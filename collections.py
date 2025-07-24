@@ -11,17 +11,27 @@
 #     return s.split()
 # print(rev("sneha is a cute"))  
 
-def non_repeating(s):
-    d={}
-    for i in s:
-        if i in d:
-            d[i]+=1
-        else:
-            d[i]=1
-    for i in reversed(s):
-        if d[i]==1:
-            return i    
-print(non_repeating("abbc"))             
+# def non_repeating(s):
+#     d={}
+#     for i in s:
+#         if i in d:
+#             d[i]+=1
+#         else:
+#             d[i]=1
+#     for i in reversed(s):
+#         if d[i]==1:
+#             return i    
+# print(non_repeating("abbc"))    
+
+# def char_freq(s):
+#     d={}
+#     for i in s:
+#         if i in d:
+#             d[i]+=1
+#         else:
+#             d[i]=1
+#     return d
+# print(char_freq("hello world"))                     
 
 # a=[1,2,3,4,"string"]
 # a.append(7)
@@ -36,12 +46,17 @@ print(non_repeating("abbc"))
 # l=[i**2 for i in range(1,6)]
 # print(l)
 
-even = [i for i in range(10) if i %2 ==0 ]
-print(even)
+li=[1,2,3,4]
+output=list(map(lambda x:x**3,li))
+print(output)
+
+# even = [i for i in range(10) if i %2 ==0 ]
+# print(even)
 
 d={"name":"sneha","age":23}
 # b={"a":1,"b":2}
 # d["grade"]="A"
+# d["age"]=12
 # d.update({"place":"chennai","blood":"AB+"})
 # print(d.keys())
 del d["age"]
@@ -51,13 +66,23 @@ print(d)
 for key,value in d.items():
     print(f"{key}-->{value}")
 
-squares = {z:z**2 for z in range(1,10)} 
-print(squares)   
+# squares = {z:z**2 for z in range(1,10)} 
+# print(squares)   
+
+# d={"a":1,"b":2,"c":3,"d":4}
+# d={k:v for k,v in d.items() if v%2==0}
+# print(d)
+
+# item=list(d.items())
+# half=len(item)//2
+# d1=dict(item[:half])
+# d2=dict(item[half:])
+# print(d1,d2)
 
 
-dic={1:"one","two":"two","three":"age"}
-output={k:v for k,v in dic.items() if isinstance(k,str)}
-print(output)
+# dic={1:"one","two":"two","three":"age"}
+# output={k:v for k,v in dic.items() if isinstance(k,str)}
+# print(output)
 
 # try:
 #     x=10/0
@@ -75,13 +100,64 @@ print(output)
 # else:
 #    print("loop completed")   
 
-import copy
-a=[[1,2],3]
+# import copy
+# a=[[1,2],3]
 
-shallow=copy.copy(a)
-deep=copy.deepcopy(a)
-a[0][0]=9
+# shallow=copy.copy(a)
+# deep=copy.deepcopy(a)
+# a[0][0]=9
 
-print(a)
-print(deep)
-print(shallow)
+# print(a)
+# print(deep)
+# print(shallow)
+
+# n=5
+# for i in range(n):
+#     for j in range(i+1):
+#         print("j",end=" ")
+#     print()    
+
+# n=5
+# for i in range(n):
+#     for j in range(i,n):
+#         print("*",end=" ")
+#     for k in range(i+1):
+#         print(" ",end=" ")    
+#     print()    
+
+# n=5
+# for i in range(n):
+#     for j in range(i+1):
+#         print(" ",end=" ")
+#     for k in range(i,n):
+#         print("*",end=" ")    
+#     print()    
+
+# n=5
+# for i in range(n,0,-1):
+#     for j in range(i,0,-1):  
+#         print(j,end=" ")
+#     print()     
+
+# n=5
+# for i in range(n,0,-1):
+#     for j in range(i,0,-1):
+#         print(i,end=" ")
+#     print()    
+
+# n=5
+# for i in range(n):
+#     for j in range(n-i-1):
+#         print(" ",end=" ")
+#     for k in range(2*i+1):
+#         print("*",end=" ")
+#     print()            
+
+n=5
+for i in range(n,-1,-1):
+    for j in range(n-i):
+        print(" ",end=" ")
+    for k in range(2*i+1):
+        print("*",end=" ")
+    print()        
+

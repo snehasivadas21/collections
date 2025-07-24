@@ -1,3 +1,26 @@
+class Bank:
+    def __init__(self,account_holder,balance=0):
+        self.account_holder=account_holder
+        self.balance=balance
+    def deposite(self,amount):
+        if amount > 0 :
+            self.balance+=amount
+            return f"{amount}---{self.balance}"
+        return "Invalid"
+    def withdraw(self,amount):
+        if 0< amount <= self.balance:
+            self.balance -= amount
+            return f"{amount}---{self.balance}"
+        return "Invalid"
+    def check_Bal(self):
+        return f"{self.account_holder}-{self.balance}"
+
+acc=Bank("sneha",1000)
+print(acc.deposite(50))
+print(acc.withdraw(30))
+print(acc.check_Bal())        
+
+
 # class Animal:
 #     def speak(self):
 #         return "sound"
