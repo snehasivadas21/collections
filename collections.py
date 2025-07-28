@@ -111,6 +111,19 @@ for key,value in d.items():
 # print(deep)
 # print(shallow)
 
+def is_prime(n):
+    if n<2:
+        return False
+    for i in range(2,int(n**0.5)+1):
+        if n%i==0:
+            return False
+    return True
+def prime(arr):
+    return [i for i in arr if is_prime(i)]  
+
+arr=[4,7,10,11]
+print(prime(arr))  
+
 # n=5
 # for i in range(n):
 #     for j in range(i+1):

@@ -8,7 +8,7 @@ class Bank:
             return f"{amount}---{self.balance}"
         return "Invalid"
     def withdraw(self,amount):
-        if 0< amount <= self.balance:
+        if 0 < amount <= self.balance:
             self.balance -= amount
             return f"{amount}---{self.balance}"
         return "Invalid"
