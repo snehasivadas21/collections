@@ -3,6 +3,9 @@
 #     return sum( 1 for i in s if i in vowels)
 # print(count_vowels("sneha"))  
 
+str1="sky is blue"
+print(" ".join(str1.split()[::-1]))
+
 # def rev(s):
 #     return s[::-1]    
 #     return s.upper()
@@ -124,6 +127,13 @@ def prime(arr):
 arr=[4,7,10,11]
 print(prime(arr))  
 
+def sum(n):
+    total=0
+    for i in range(1,n+1):
+        total+=i
+    return total
+print(sum(10))    
+
 # n=5
 # for i in range(n):
 #     for j in range(i+1):
@@ -172,5 +182,11 @@ for i in range(n,-1,-1):
         print(" ",end=" ")
     for k in range(2*i+1):
         print("*",end=" ")
-    print()        
+    print()    
+
+n=5
+for i in range(1,n+1):
+    for j in range(i,n+1):
+        print(j,end=" ")
+    print()            
 

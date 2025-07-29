@@ -22,7 +22,7 @@ def fib(n):
     return fib(n-1)+fib(n-2)
 def list_fib(n):
     return [fib(i) for i in range(n)]
-print(list_fib(5))
+print(list_fib(10))
 
 def fact(n):
     if n<=1:
@@ -30,7 +30,7 @@ def fact(n):
     return n*fact(n-1)
 print(fact(5))
 
-def reverse_word(word):
+def reverse_word(word): #O(n)
     if len(word) <= 1:
         return word
     return reverse_word(word[1:]) + word[0]
