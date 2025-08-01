@@ -1,26 +1,40 @@
-class Bank:
-    def __init__(self,account_holder,balance=0):
-        self.account_holder=account_holder
-        self.balance=balance
-    def deposite(self,amount):
-        if amount > 0 :
-            self.balance+=amount
-            return f"{amount}---{self.balance}"
-        return "Invalid"
-    def withdraw(self,amount):
-        if 0 < amount <= self.balance:
-            self.balance -= amount
-            return f"{amount}---{self.balance}"
-        return "Invalid"
-    def check_Bal(self):
-        return f"{self.account_holder}-{self.balance}"
+# class Bank:
+#     def __init__(self,account_holder,balance=0):
+#         self.account_holder=account_holder
+#         self.balance=balance
+#     def deposite(self,amount):
+#         if amount > 0 :
+#             self.balance+=amount
+#             return f"{amount}---{self.balance}"
+#         return "Invalid"
+#     def withdraw(self,amount):
+#         if 0 < amount <= self.balance:
+#             self.balance -= amount
+#             return f"{amount}---{self.balance}"
+#         return "Invalid"
+#     def check_Bal(self):
+#         return f"{self.account_holder}-{self.balance}"
 
-acc=Bank("sneha",1000)
-print(acc.deposite(50))
-print(acc.withdraw(30))
-print(acc.check_Bal())        
-
-
+# acc=Bank("sneha",1000)
+# print(acc.deposite(50))
+# print(acc.withdraw(30))
+# print(acc.check_Bal())   
+  
+class Parent:
+    def __init__(self,name):
+        self.name=name
+    def display(self):
+        print(f"{self.name}")
+class Child(Parent):
+    def __init__(self,name,age):
+        super().__init__(name)
+        self.age=age
+    def display(self):
+        super().display()
+        print(f"{self.age}")
+obj=Child("sneha",45)
+obj.display()
+        
 # class Animal:
 #     def speak(self):
 #         return "sound"
@@ -70,12 +84,12 @@ import random
 # random_num=lambda : random.randint(1,10)
 # print(random_num())
 
-def rand_not_five():
-    random_num = random.randint(1,10)
-    while random_num==5:
-        random_num = random.randint(1,10)
-    return random_num
-print(rand_not_five())    
+# def rand_not_five():
+#     random_num = random.randint(1,10)
+#     while random_num==5:
+#         random_num = random.randint(1,10)
+#     return random_num
+# print(rand_not_five())    
  
 # def count(n):
 #     for i in range(1,n+1):
@@ -126,9 +140,27 @@ def add(a,b):
    return a+b
 print(add(5,6))   
 
-import os
-with open("text.txt","w") as f:
-    f.write("hello")
-with open("text.txt","r") as f:
-    print(f.read())  
-os.remove("text.txt")    
+import time
+def decorator(func):
+    def wrapper(*args,**kwargs):
+        start=time.time()
+        result=func(*args,**kwargs)
+        end=time.time()
+        print(f"{end-start:.4f}->{func.__name__}")
+        return result
+    return wrapper
+@decorator
+def reverse(s):
+    output=[]
+    s=s.split()
+    for i in s:
+        output.append(i[::-1])
+    return " ".join(output)
+print(reverse("hello leetcode"))    
+
+# import os
+# with open("text.txt","w") as f:
+#     f.write("hello")
+# with open("text.txt","r") as f:
+#     print(f.read())  
+# os.remove("text.txt")    

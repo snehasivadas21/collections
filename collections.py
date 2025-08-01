@@ -3,8 +3,8 @@
 #     return sum( 1 for i in s if i in vowels)
 # print(count_vowels("sneha"))  
 
-str1="sky is blue"
-print(" ".join(str1.split()[::-1]))
+# str1="sky is blue"
+# print(" ".join(str1.split()[::-1]))
 
 # def rev(s):
 #     return s[::-1]    
@@ -63,6 +63,7 @@ d={"name":"sneha","age":23}
 # d.update({"place":"chennai","blood":"AB+"})
 # print(d.keys())
 del d["age"]
+# d.pop("age")
 print(d)
 # merged={**d,**b}
 # print(merged)
@@ -86,6 +87,54 @@ for key,value in d.items():
 # dic={1:"one","two":"two","three":"age"}
 # output={k:v for k,v in dic.items() if isinstance(k,str)}
 # print(output)
+
+# users=[
+#     {"id":1,"name":"Alice","age":13},
+#     {"id":2,"name":"Bob","age":23},
+#     {"id":3,"name":"Charlie","age":33},
+# ]
+# names=[user["name"] for user in users]
+# print(names)
+# ages=[user for user in users if user["age"]>25]
+# print(ages)
+# for user in users:
+#     user["email"]=user["name"].lower()+"@gmail.com"
+# print(users)    
+
+students = [
+    {
+        "id": 1,
+        "name": "Alice",
+        "age": 20,
+        "grade": "A",
+        "courses": {"math": 95, "science": 90, "history": 85}
+    },
+    {
+        "id": 2,
+        "name": "Bob",
+        "age": 21,
+        "grade": "B",
+        "courses": {"math": 85, "science": 80, "history": 88}
+    },
+    {
+        "id": 3,
+        "name": "Charlie",
+        "age": 19,
+        "grade": "B",
+        "courses": {"math": 88, "science": 82, "history": 80}
+    }
+]
+subjects=[list(s["courses"].keys()) for s in students]
+print(subjects)
+grade=[s["name"] for s in students if s["grade"]=="A"]
+print(grade)
+mark=[s["name"] for s in students if s["courses"]["math"]>90]
+print(mark)
+avg=sum( s["course"]["history"] for s in students)/len(students)
+print(avg)
+sort=sorted(students,key=lambda s:s["age"])
+print(sort)
+
 
 # try:
 #     x=10/0
@@ -114,25 +163,46 @@ for key,value in d.items():
 # print(deep)
 # print(shallow)
 
-def is_prime(n):
-    if n<2:
-        return False
-    for i in range(2,int(n**0.5)+1):
-        if n%i==0:
-            return False
-    return True
-def prime(arr):
-    return [i for i in arr if is_prime(i)]  
+# def is_prime(n):
+#     if n<2:
+#         return False
+#     for i in range(2,int(n**0.5)+1):
+#         if n%i==0:
+#             return False
+#     return True
+# def prime(arr):
+#     return [i for i in arr if is_prime(i)]  
 
-arr=[4,7,10,11]
-print(prime(arr))  
+# arr=[4,7,10,11]
+# print(prime(arr))  
 
-def sum(n):
-    total=0
-    for i in range(1,n+1):
-        total+=i
-    return total
-print(sum(10))    
+# def sum(n):
+#     total=0
+#     for i in range(1,n+1):
+#         total+=i
+#     return total
+# print(sum(10))    
+
+# def move_zeros_to_end(nums):
+#     j = 0  
+#     for i in range(len(nums)):
+#         if nums[i] != 0:
+#             nums[i], nums[j] = nums[j], nums[i] 
+#             j += 1
+#     return nums
+# nums = [0, 1, 0, 3, 12]
+# print(move_zeros_to_end(nums)) 
+
+# def move_zeros_to_front(nums):
+#     j=len(nums)-1
+#     for i in range(len(nums)-1,-1,-1):
+#         if nums[i]!=0:
+#             nums[i],nums[j]=nums[j],nums[i]
+#             j-=1
+#     return nums
+# nums=[0,1,0,3,12]
+# print(move_zeros_to_front(nums))
+          
 
 # n=5
 # for i in range(n):
@@ -176,17 +246,17 @@ print(sum(10))
 #         print("*",end=" ")
 #     print()            
 
-n=5
-for i in range(n,-1,-1):
-    for j in range(n-i):
-        print(" ",end=" ")
-    for k in range(2*i+1):
-        print("*",end=" ")
-    print()    
+# n=5
+# for i in range(n,-1,-1):
+#     for j in range(n-i):
+#         print(" ",end=" ")
+#     for k in range(2*i+1):
+#         print("*",end=" ")
+#     print()    
 
-n=5
-for i in range(1,n+1):
-    for j in range(i,n+1):
-        print(j,end=" ")
-    print()            
+# n=5
+# for i in range(1,n+1):
+#     for j in range(i,n+1):
+#         print(j,end=" ")
+#     print()            
 
