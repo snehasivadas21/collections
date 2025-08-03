@@ -16,4 +16,15 @@ def is_valide(s):
         return True
     else:
         return False
-print(is_valide("()[}]"))                        
+print(is_valide("()[}]"))    
+
+def reverse(s):
+    stack=[]
+    for i in s:
+        stack.append(i)
+    a=""
+    while stack:
+        a+=stack.pop()
+    return a
+s="hello"
+print(reverse(s))     

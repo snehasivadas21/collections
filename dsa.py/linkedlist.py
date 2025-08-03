@@ -40,7 +40,15 @@ class Linkedlist:
             cur.next=prev
             prev=cur
             cur=new_node
-        self.head = prev         
+        self.head = prev    
+
+    def duplicate(self):
+        cur=self.head
+        while cur.next:
+            if cur.data == cur.next.data:
+                cur.next=cur.next.next
+            else:
+                cur=cur.next              
 
     def traverse(self): #O(n)
         curr=self.head
@@ -50,11 +58,13 @@ class Linkedlist:
         print("None")                      
 
 ll=Linkedlist()
-arr=[1,2,3,4]
+arr=[1,2,3,4,4]
 ll.insert_head(0)    
 for i in arr:
     ll.insert_end(i)   
 print(ll.middle())  
 ll.traverse() 
 ll.reverse()
+ll.duplicate()
 ll.traverse()  
+

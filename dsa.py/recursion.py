@@ -40,4 +40,20 @@ def reverse_each_word(sentence):
     return ' '.join(reverse_word(word) for word in words)
 print(reverse_each_word("hello world"))
 
+def rev(sentence):
+    if len(sentence)<=1:
+        return sentence
+    return rev(sentence[1:])+[sentence[0]]
+sentence="hello world"
+word=sentence.split()
+print(" ".join(rev(word)))
+
+def sum_arr(arr,N):
+    if N==0:
+        return 0
+    return arr[N-1]+sum_arr(arr,N-1)
+arr=[1,2,3,4]
+N=len(arr)
+print(sum_arr(arr,N))
+
     

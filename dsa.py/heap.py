@@ -24,4 +24,25 @@ def printarr(arr):
 # arr=[23,1,4,2,50]
 arr=["a","l","a","b"]
 heapsort(arr)
-printarr(arr)                              
+printarr(arr)    
+
+class MaxHeap:
+    def __init__(self):
+        self.heap=[]
+    def insert(self,value):
+        self.heap.append(value)
+        self.heapifyup(len(self.heap)-1)
+    def heapifyup(self,index):
+        parent=(index-1)//2
+        if index>0 and self.heap[index]>self.heap[parent]:
+            self.heap[index],self.heap[parent]=self.heap[parent],self.heap[index]
+            self.heapifyup(parent)
+    def display(self):
+        print(self.heap)
+max=MaxHeap()
+max.insert(10)
+max.insert(30)
+max.insert(20)
+max.insert(40)
+max.insert(50)
+max.display()                    

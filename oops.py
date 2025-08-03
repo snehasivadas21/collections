@@ -34,6 +34,27 @@ class Child(Parent):
         print(f"{self.age}")
 obj=Child("sneha",45)
 obj.display()
+
+class Person:
+    def __init__(self, name, pin):
+        self.name = name
+        self.__pin = pin 
+
+    def get_pin(self):
+        return self.__pin
+
+class Child(Person):
+    def __init__(self, name, pin, age):
+        super().__init__(name, pin)
+        self.age = age
+
+    def display(self):
+        print(self.name, self.age)
+
+ch = Child("hello", 1234, 34)
+ch.display()
+print(ch.get_pin())  
+
         
 # class Animal:
 #     def speak(self):
@@ -43,6 +64,21 @@ obj.display()
 #         return "woof"
 # dog=Dog()  
 # print(dog.speak()) 
+
+class Bank:
+    def __init__(self,name,dept,salary):
+        self.name=name
+        self._dept=dept
+        self.__salary=salary
+
+    def get_salary(self):
+        return self.__salary
+b=Bank("sneha","HR",50000)
+print(b.name)    
+print(b._dept)    
+# print(b.__salary)
+print(b.get_salary())  #getter
+print(b._Bank__salary) #name mangling
 
 # class Rectangle:
 #     def __init__(self,length,breadth):
@@ -101,7 +137,24 @@ import random
 #     for i in range(n):
 #         yield i**2
 # for i in squares(5):
-#     print(i)          
+#     print(i) 
+
+def prime_generator():
+    def is_prime(n):
+        if n < 2:
+            return False
+        for i in range(2, int(n ** 0.5) + 1):
+            if n % i == 0:
+                return False
+        return True   
+    n = 2
+    while True:
+        if is_prime(n):
+            yield n
+        n += 1
+gen = prime_generator()
+for _ in range(5):
+    print(next(gen))      
 
 
 # a=[1,2,3]
@@ -130,33 +183,33 @@ import random
 #     print("hello world")
 # hello()        
 
-def decorator(func):
-    def wrapper(*args):
-        print(f"{func.__name__}")
-        return func(*args)
-    return  wrapper
-@decorator
-def add(a,b):
-   return a+b
-print(add(5,6))   
+# def decorator(func):
+#     def wrapper(*args):
+#         print(f"{func.__name__}")
+#         return func(*args)
+#     return  wrapper
+# @decorator
+# def add(a,b):
+#    return a+b
+# print(add(5,6))   
 
-import time
-def decorator(func):
-    def wrapper(*args,**kwargs):
-        start=time.time()
-        result=func(*args,**kwargs)
-        end=time.time()
-        print(f"{end-start:.4f}->{func.__name__}")
-        return result
-    return wrapper
-@decorator
-def reverse(s):
-    output=[]
-    s=s.split()
-    for i in s:
-        output.append(i[::-1])
-    return " ".join(output)
-print(reverse("hello leetcode"))    
+# import time
+# def decorator(func):
+#     def wrapper(*args,**kwargs):
+#         start=time.time()
+#         result=func(*args,**kwargs)
+#         end=time.time()
+#         print(f"{end-start:.4f}->{func.__name__}")
+#         return result
+#     return wrapper
+# @decorator
+# def reverse(s):
+#     output=[]
+#     s=s.split()
+#     for i in s:
+#         output.append(i[::-1])
+#     return " ".join(output)
+# print(reverse("hello leetcode"))    
 
 # import os
 # with open("text.txt","w") as f:

@@ -6,6 +6,15 @@
 # str1="sky is blue"
 # print(" ".join(str1.split()[::-1]))
 
+def count(n):
+    b=""
+    for i in n:
+        if str(i) not in b:
+            b+=str(i)
+    return [int(x) for x in b]
+n=[1,1,2,3]    
+print(count(n))    
+
 # def rev(s):
 #     return s[::-1]    
 #     return s.upper()
@@ -13,6 +22,13 @@
 #     return s.replace('a','w')
 #     return s.split()
 # print(rev("sneha is a cute"))  
+
+s="hello"
+swapped=s[-1]+s[1:-1]+s[0] if len(s)>1 else s
+print(swapped)
+
+cap_first = lambda s: s[0].upper() + s[1:] if s else s
+print(cap_first("hello"))  
 
 # def non_repeating(s):
 #     d={}
@@ -66,6 +82,8 @@ del d["age"]
 # d.pop("age")
 print(d)
 # merged={**d,**b}
+# merged=d | b
+# d.update(b)
 # print(merged)
 for key,value in d.items():
     print(f"{key}-->{value}")
@@ -130,11 +148,24 @@ grade=[s["name"] for s in students if s["grade"]=="A"]
 print(grade)
 mark=[s["name"] for s in students if s["courses"]["math"]>90]
 print(mark)
-avg=sum( s["course"]["history"] for s in students)/len(students)
+avg=sum( s["courses"]["history"] for s in students)/len(students)
 print(avg)
 sort=sorted(students,key=lambda s:s["age"])
 print(sort)
 
+# d={"a":[1,2,3],"b":[4,5,6],"c":[10,0,0]}
+# output=max(d,key=d.get)
+# del d[output]
+# print(d)
+
+# a={"a":[1,2,3],"b":[4,5,6],"c":[7,8,9],"d":[10,11,12]}
+# output=sorted(a,key=a.get)
+# del a[output[-2]]
+# print(a)
+
+l=["abc","a","abcd"]
+l.pop(l.index(min(l,key=len)))
+print(l)
 
 # try:
 #     x=10/0
