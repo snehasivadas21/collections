@@ -30,6 +30,15 @@ print(swapped)
 cap_first = lambda s: s[0].upper() + s[1:] if s else s
 print(cap_first("hello"))  
 
+li=["string","is","immuntable"]
+mi=min(li,key=len)
+index=li.index(mi)
+li.pop(index)
+print(li)
+
+new_list = [s for s in li if s!=min]
+print(new_list)
+
 # def non_repeating(s):
 #     d={}
 #     for i in s:
@@ -68,9 +77,29 @@ print(cap_first("hello"))
 li=[1,2,3,4]
 output=list(map(lambda x:x**3,li))
 print(output)
+print(list(filter(lambda x:x%2==0,li)))
 
 # even = [i for i in range(10) if i %2 ==0 ]
 # print(even)
+
+nums=[1,2,3,4,4,2,5]
+duplicates = [x for x in set(nums) if nums.count(x)>1]
+print(duplicates)
+
+my_list = [1, 2, 2, 3, 4, 4, 5]
+my_set = {6, 7}
+my_set.update(my_list) 
+my_set = my_set | set(my_list) or my_set.update(set(my_list))
+print(my_set)
+
+def is_as(list1):
+    for i in range(len(list1)-1):
+        if list1[i]>list1[i+1]:
+            return False
+    return True
+list1=[1,2,3,4,5]    
+print(is_as(list1))
+        
 
 d={"name":"sneha","age":23}
 # b={"a":1,"b":2}
@@ -91,6 +120,9 @@ for key,value in d.items():
 # squares = {z:z**2 for z in range(1,10)} 
 # print(squares)   
 
+sq={i:i**3 for i in range(10) if i%2!=0}
+print(sq)
+
 # d={"a":1,"b":2,"c":3,"d":4}
 # d={k:v for k,v in d.items() if v%2==0}
 # print(d)
@@ -105,6 +137,23 @@ for key,value in d.items():
 # dic={1:"one","two":"two","three":"age"}
 # output={k:v for k,v in dic.items() if isinstance(k,str)}
 # print(output)
+
+a={"a":1,"b":"sbs","c":"r","d":2.3}
+keys=[]
+for key,value in a.items():
+    if not isinstance(value,str):
+        keys.append(key)
+for key in keys:
+    del a[key]
+print(a)    
+
+def filter_dict(dic,key):
+    return [d for d in dic if key not in d]
+dic=[{"a":1,"b":2},{"c":3},{"a":4,"d":5}]
+print(filter_dict(dic,"a"))
+
+dicts=[{'a':1,'b':2},{'a':3,'c':4},{'a':5,'d':6}]
+print(tuple(d['a'] for d in dicts))
 
 # users=[
 #     {"id":1,"name":"Alice","age":13},
@@ -152,6 +201,7 @@ avg=sum( s["courses"]["history"] for s in students)/len(students)
 print(avg)
 sort=sorted(students,key=lambda s:s["age"])
 print(sort)
+print(sorted(list(key=lambda x:x['age'],reverse=True)))
 
 # d={"a":[1,2,3],"b":[4,5,6],"c":[10,0,0]}
 # output=max(d,key=d.get)
@@ -163,9 +213,25 @@ print(sort)
 # del a[output[-2]]
 # print(a)
 
+def all_key(d):
+    if not d:
+        return True
+    first_key=type(next(iter(d)))
+    for key in d:
+        if type(key) != first_key:
+            return False
+    return True
+dict1={"hello":12,"game":"bobjy",90:90}
+print(all_key(dict1))
+
 l=["abc","a","abcd"]
 l.pop(l.index(min(l,key=len)))
 print(l)
+
+d={"a":[7,3,3],"b":[6,6,5],"c":[1,2,3]}
+
+a=max(d,key=lambda k:len(set(d[k])))
+print(a)
 
 # try:
 #     x=10/0
@@ -275,10 +341,15 @@ print(l)
 #         print(" ",end=" ")
 #     for k in range(2*i+1):
 #         print("*",end=" ")
-#     print()            
+#     print()  
+
+def star_pyr(rows):
+    for i in range(rows):
+        print(" "*(rows-i-1)+"*"*(2*i+1))
+star_pyr(5)           
 
 # n=5
-# for i in range(n,-1,-1):
+# for i in range(n-1,-1,-1):
 #     for j in range(n-i):
 #         print(" ",end=" ")
 #     for k in range(2*i+1):
@@ -289,5 +360,62 @@ print(l)
 # for i in range(1,n+1):
 #     for j in range(i,n+1):
 #         print(j,end=" ")
-#     print()            
+#     print()  
 
+
+nums =[10,20,30,40,50,60]
+mid = (len(nums)-1)//2
+nums.pop(mid)
+print(nums)
+
+def key_same(d):
+    return len({type(k) for k in d.keys()}) == 1
+print(key_same({"a":1,"b":2}))    
+
+from datetime import datetime
+
+now = datetime.now()
+print("Current datetime:", now)
+print("Current time only:", now.strftime("%H:%M:%S"))
+print("Current date only:", now.strftime("%Y-%m-%d"))
+
+
+my_list = ["short", "medium", "very"]
+max_len = max(len(s) for s in my_list)
+
+for item in my_list:
+    print(f"{item:>{max_len}}")
+
+def first_last_key(d):
+    if not d:
+        return None
+    keys=list(d.keys())
+    return (keys[0],keys[-1])
+d={"name":"sneha","age":89,"place":"paris"}
+print(first_last_key(d))  
+
+def all_same(*args):
+    if not args:
+        return True
+    first=args[0]
+    for arg in args:
+        if arg!=first:
+            return False
+    return True
+print(all_same("a","3",1))
+print(all_same(1,1,1))
+
+li=[1,-2,3,"hello",3.5,-2]
+total=0
+for i in li:
+    if isinstance(i,(int,float)) and i>0:
+        total+=i
+print(total)    
+
+s="geekss"
+res=[]
+for i in set(s):
+    if s.count(i)>1:
+        res.append(i)
+print(res)        
+    

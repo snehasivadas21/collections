@@ -16,7 +16,7 @@ if result!=-1:
 else:
     print("No")        
 
-def fib(n):
+def fib(n): #0,1,1,2,3,5,8,13
     if n<=1:
         return n
     return fib(n-1)+fib(n-2)
@@ -55,5 +55,18 @@ def sum_arr(arr,N):
 arr=[1,2,3,4]
 N=len(arr)
 print(sum_arr(arr,N))
+
+def sum_even_recursion(arr):
+    if not arr:
+        return 0
+    else:
+        first_element=arr[0]
+        if first_element%2==0:
+            return first_element+sum_even_recursion(arr[1:])
+        else:
+            return sum_even_recursion(arr[1:])
+arr=[1,2,2,3,4,5]
+print(sum_even_recursion(arr))     
+
 
     

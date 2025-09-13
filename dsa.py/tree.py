@@ -33,3 +33,29 @@ insert(r,30)
 insert(r,60)
 print(height(r))
 inorder(r)
+
+class Node:
+    def __init__(self,val):
+        self.val=val
+        self.left=None
+        self.right=None
+
+def kthsmallest(root,k):
+    def inorder(node):
+        if not node:
+            return None
+        left=inorder(node.left)
+        if left is not None:
+            return left
+    
+        inorder.count+=1
+        if inorder.count==k:
+            return node.val
+        return inorder(node.right)    
+    inorder.count=0
+    return inorder(root)   
+r=Node(5)
+r.left=Node(4)
+r.right=Node(6)
+r.left.left=Node(3)
+print(kthsmallest(r,2))

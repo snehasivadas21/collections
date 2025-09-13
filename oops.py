@@ -216,4 +216,16 @@ for _ in range(5):
 #     f.write("hello")
 # with open("text.txt","r") as f:
 #     print(f.read())  
-# os.remove("text.txt")    
+# os.remove("text.txt")  
+
+class A:
+    def hello(self):
+        print("A")
+class B:
+    def hai(self):
+        print("B")
+class C(A,B):
+    pass
+obj=C()
+obj.hello()
+obj.hai()  
