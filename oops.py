@@ -127,6 +127,10 @@ import random
 #     return random_num
 # print(rand_not_five())    
  
+import math
+square=lambda x:(math.sqrt(x))**2
+print(square(5))
+ 
 # def count(n):
 #     for i in range(1,n+1):
 #         yield i

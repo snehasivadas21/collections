@@ -27,4 +27,17 @@ def reverse(s):
         a+=stack.pop()
     return a
 s="hello"
-print(reverse(s))     
+print(reverse(s))  
+
+def palindrome(str):
+    stack=[]
+    for i in str:
+        stack.append(i)
+    for i in str:
+        if i!=stack.pop():
+            return False
+    return True
+str="madam"
+print(palindrome(str))
+    
+        

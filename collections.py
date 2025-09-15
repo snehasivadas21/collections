@@ -6,6 +6,10 @@
 # str1="sky is blue"
 # print(" ".join(str1.split()[::-1]))
 
+a=["aple","banana","grape"]
+res=list(map(lambda x:x[::-1],a))
+print(res)
+
 def count(n):
     b=""
     for i in n:
@@ -35,31 +39,7 @@ mi=min(li,key=len)
 index=li.index(mi)
 li.pop(index)
 print(li)
-
-new_list = [s for s in li if s!=min]
-print(new_list)
-
-# def non_repeating(s):
-#     d={}
-#     for i in s:
-#         if i in d:
-#             d[i]+=1
-#         else:
-#             d[i]=1
-#     for i in reversed(s):
-#         if d[i]==1:
-#             return i    
-# print(non_repeating("abbc"))    
-
-# def char_freq(s):
-#     d={}
-#     for i in s:
-#         if i in d:
-#             d[i]+=1
-#         else:
-#             d[i]=1
-#     return d
-# print(char_freq("hello world"))                     
+                    
 
 # a=[1,2,3,4,"string"]
 # a.append(7)
@@ -99,6 +79,15 @@ def is_as(list1):
     return True
 list1=[1,2,3,4,5]    
 print(is_as(list1))
+
+d={'a':1,'b':2,'c':3,'d':4}
+keys=[]
+for key,value in d.items():
+    if value%2!=0:
+        keys.append(key)
+for key in keys:
+    del d[key]
+print(d)    
         
 
 d={"name":"sneha","age":23}
@@ -116,6 +105,19 @@ print(d)
 # print(merged)
 for key,value in d.items():
     print(f"{key}-->{value}")
+
+d1={"a":1,"b":2}
+d2={"c":3,"b":8}
+
+merge={}
+for k,v in d1.items():
+    merge[k]=v
+for k,v in d2.items():
+     if k in merge:
+         merge[k]+=v
+     else:
+         merge[k]=v
+print(merge)             
 
 # squares = {z:z**2 for z in range(1,10)} 
 # print(squares)   
@@ -346,7 +348,10 @@ print(a)
 def star_pyr(rows):
     for i in range(rows):
         print(" "*(rows-i-1)+"*"*(2*i+1))
-star_pyr(5)           
+star_pyr(5)       
+
+for i in range(5, 0, -1):
+    print(" " * (5 - i) + "*" * (2 * i - 1))
 
 # n=5
 # for i in range(n-1,-1,-1):
@@ -382,7 +387,6 @@ print("Current date only:", now.strftime("%Y-%m-%d"))
 
 my_list = ["short", "medium", "very"]
 max_len = max(len(s) for s in my_list)
-
 for item in my_list:
     print(f"{item:>{max_len}}")
 
@@ -418,4 +422,24 @@ for i in set(s):
     if s.count(i)>1:
         res.append(i)
 print(res)        
-    
+
+def second(nums):
+    if len(nums)<2:
+        return None
+    unique=sorted(list(set(nums)),reverse=True)
+    if len(unique)<2:
+        return None
+    return unique[1]
+nums=[20,11,3,42,0]
+print(second(nums))
+
+def rev(lst):
+    left=0
+    right=len(lst)-1
+    while left<right:
+        lst[left],lst[right]=lst[right],lst[left]
+        left+=1
+        right-=1
+    return lst
+lst=[1,2,3,4]
+print(rev(lst))

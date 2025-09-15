@@ -48,7 +48,18 @@ class Linkedlist:
             if cur.data == cur.next.data:
                 cur.next=cur.next.next
             else:
-                cur=cur.next              
+                cur=cur.next   
+
+    def delete(self,head,n):
+        fast=self.head
+        slow=self.head
+        for _ in range(n):
+            fast=fast.next
+        while fast.next is not None:
+            fast=fast.next
+            slow=slow.next
+        slow.next=slow.next.next
+        return head                               
 
     def traverse(self): #O(n)
         curr=self.head
@@ -66,5 +77,6 @@ print(ll.middle())
 ll.traverse() 
 ll.reverse()
 ll.duplicate()
+ll.delete(ll.head,2)
 ll.traverse()  
 

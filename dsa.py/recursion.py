@@ -68,5 +68,13 @@ def sum_even_recursion(arr):
 arr=[1,2,2,3,4,5]
 print(sum_even_recursion(arr))     
 
+def remove_char(string,c):
+    if not string:
+        return ""
+    if string[0]==c:
+        return remove_char(string[1:],c)
+    else:
+        return string[0]+remove_char(string[1:])
+print(remove_char("balance","l"))
 
     
