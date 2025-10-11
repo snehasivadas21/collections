@@ -59,7 +59,18 @@ class Linkedlist:
             fast=fast.next
             slow=slow.next
         slow.next=slow.next.next
-        return head                               
+        return head   
+
+    def deletelast(self,head):
+        if self.head is None:
+            return None
+        if self.head.next is None:
+            return None
+        temp=self.head
+        while temp.next.next is not None:
+            temp=temp.next
+        temp.next=None
+        return self.head                            
 
     def traverse(self): #O(n)
         curr=self.head
@@ -78,5 +89,6 @@ ll.traverse()
 ll.reverse()
 ll.duplicate()
 ll.delete(ll.head,2)
+ll.deletelast(ll.head)
 ll.traverse()  
 

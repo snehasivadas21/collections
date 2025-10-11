@@ -231,9 +231,56 @@ l.pop(l.index(min(l,key=len)))
 print(l)
 
 d={"a":[7,3,3],"b":[6,6,5],"c":[1,2,3]}
-
 a=max(d,key=lambda k:len(set(d[k])))
 print(a)
+
+d={"a":"apple","b":"ball","c":"call"}
+s=max(d,key=lambda k:len(d[k]))
+del d[s]
+print(d)
+
+k=sorted(d.items(),key=lambda x:len(x[1]))
+lk,lv=k[-1]
+del d[lk]
+print(d)
+
+s="my name is s sneha"
+d={}
+result=""
+for i in s:
+    if i in d:
+        d[i]+=1
+    else:
+        d[i]=1
+    if d[i]==2:
+        result+=i.upper()
+    else:
+        result+=i
+print(result)   
+
+students = [
+    {'name': 'Alice', 'score': 85},
+    {'name': 'Bob', 'score': 92},
+    {'name': 'Charlie', 'score': 78}
+]
+sorted_students = sorted(students, key=lambda x: x['score'])
+print(sorted_students)
+
+d = {
+  "a": {"score": 80, "age": 20},
+  "b": {"score": 90, "age": 22},
+  "c": {"score": 75, "age": 21}
+}
+max_score=float('-inf')
+max_key=""
+for k,v in d.items():
+    if v["score"]>max_score:
+        max_score=v["score"]
+        max_key=k
+print(max_key)   
+
+maxi=max(d,key=lambda x:d[x]["score"])
+print(maxi)
 
 # try:
 #     x=10/0
@@ -423,15 +470,22 @@ for i in set(s):
         res.append(i)
 print(res)        
 
-def second(nums):
-    if len(nums)<2:
+def second(arr):
+    if len(arr)<2:
         return None
-    unique=sorted(list(set(nums)),reverse=True)
-    if len(unique)<2:
+    lar=float('-inf')
+    slar=float(['-inf'])
+    for i in arr:
+        if i > lar:
+            slar=lar
+            lar=i
+        elif i > slar and i!=lar:
+            slar=i
+    if slar == float('-inf'):    
         return None
-    return unique[1]
-nums=[20,11,3,42,0]
-print(second(nums))
+    return slar
+arr=[1,2,3,4,5]
+print(second(arr))       
 
 def rev(lst):
     left=0
@@ -443,3 +497,16 @@ def rev(lst):
     return lst
 lst=[1,2,3,4]
 print(rev(lst))
+
+l="aaabbcdddd"
+result=""
+count=1
+for i in range(len(l)-1):
+    if l[i]==l[i+1]:
+        count+=1
+    else:
+        result+=l[i]+str(count)
+        count=1
+result+=l[-1]+str(count)        
+print(result)        
+        

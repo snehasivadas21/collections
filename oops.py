@@ -87,8 +87,16 @@ print(b._Bank__salary) #name mangling
 #     def area(self):
 #         return self.lenght * self.breadth
 # r=Rectangle(5,4)
-# print(r.area())        
+# print(r.area()) 
 
+class Student:
+    count = 0  
+    def __init__(self, name):
+        self.name = name
+        Student.count += 1  
+s1 = Student("Alice")
+s2 = Student("Bob")
+print("Number of instances:", Student.count)
 
 # from abc import ABC,abstractmethod
 # class Shape(ABC):

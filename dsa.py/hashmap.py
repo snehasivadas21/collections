@@ -51,3 +51,37 @@ def is_anagram(s1,s2):
 s1="triangle"
 s2="integral"
 print(is_anagram(s1,s2))
+
+class Hash:
+    def __init__(self,size=10):
+        self.size=size
+        self.table=[[] for _ in range(size)]
+    def hash_func(self,key):
+        return hash(key)%self.size
+    def insert(self,key,value):
+        index=self.hash_func(key)
+        for i,(k,v) in enumerate(self.table[index]):
+            if k==key:
+                self.table[index][i]=(key,value)
+                return 
+        self.table[index].append((key,value))
+    def get(self,key):
+        index=self.hash_func(key)
+        for k,v in self.table[index]:
+            if k==key:
+                return v
+        return None
+    def delete(self,key):
+        index=self.hash_func(key)
+        for i,(k,v) in enumerate(self.table[index]):
+            if k==key:
+                del self.table[index][i]
+                return False
+        return True
+h=Hash()
+h.insert("a",10)
+h.insert("b",20)
+print(h.get("b"))
+print(h.table)
+h.delete("a")
+print(h.table)
