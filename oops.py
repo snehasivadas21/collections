@@ -138,6 +138,15 @@ import random
 import math
 square=lambda x:(math.sqrt(x))**2
 print(square(5))
+
+from datetime import datetime,timedelta
+
+print((datetime.now()-timedelta(days=5)).strftime('%Y-%m-%d'))
+
+now = datetime.now()
+print("Current datetime:", now)
+print("Current time only:", now.strftime("%H:%M:%S"))
+print("Current date only:", now.strftime("%Y-%m-%d"))
  
 # def count(n):
 #     for i in range(1,n+1):
@@ -150,6 +159,26 @@ print(square(5))
 #         yield i**2
 # for i in squares(5):
 #     print(i) 
+
+def even_numbers():
+    i = 2
+    while True:
+        yield i
+        i += 2
+evens = even_numbers()
+print(next(evens))  # 2
+print(next(evens))  # 4
+print(next(evens))  # 6
+
+def fib(n):
+    a=0
+    b=1
+    for _ in range(n):
+        yield a
+        a,b=b,a+b
+for i in fib(10):
+    print(i,end=" ")
+print()    
 
 def prime_generator():
     def is_prime(n):
@@ -171,7 +200,34 @@ for _ in range(5):
 
 # a=[1,2,3]
 # b=iter(a)
-# print(next(b))         
+# print(next(b))  
+
+# try:
+#     x=10/0
+#     b=10/2
+# except  ZeroDivisionError:
+#     print("error")
+# else:
+#     print("success")
+# finally:
+#     print("cleanup")            
+
+# for i in range(5):
+#    if  i == 5:
+#       break
+# else:
+#    print("loop completed")   
+
+# import copy
+# a=[[1,2],3]
+
+# shallow=copy.copy(a)
+# deep=copy.deepcopy(a)
+# a[0][0]=9
+
+# print(a)
+# print(deep)
+# print(shallow)
     
 # class Person:
 #     sleeptime =8
@@ -194,6 +250,31 @@ for _ in range(5):
 # def hello():
 #     print("hello world")
 # hello()        
+
+def uppercase_decorator(func):
+    def wrapper(*args,**kwargs):
+        result=func(*args,**kwargs)
+        if isinstance(result,str):
+            return result.upper()
+        return result
+    return wrapper    
+@uppercase_decorator
+def greet():
+    return "hello world"
+print(greet())   
+
+def divide_safe(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except ZeroDivisionError:
+            print("Cannot divide by zero")
+    return wrapper
+@divide_safe
+def divide(a, b):
+    return a / b
+print(divide(10, 2))  
+print(divide(5, 0))   
 
 # def decorator(func):
 #     def wrapper(*args):

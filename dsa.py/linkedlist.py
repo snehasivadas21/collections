@@ -60,6 +60,11 @@ class Linkedlist:
             slow=slow.next
         slow.next=slow.next.next
         return head   
+    
+    def delete_front(self):
+        if not self.head:
+            return None
+        self.head=self.head.next
 
     def deletelast(self,head):
         if self.head is None:
@@ -89,6 +94,7 @@ ll.traverse()
 ll.reverse()
 ll.duplicate()
 ll.delete(ll.head,2)
+ll.delete_front()
 ll.deletelast(ll.head)
 ll.traverse()  
 

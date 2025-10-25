@@ -64,4 +64,37 @@ t=Trie()
 words=["goes","go","apple","app"]
 for i in words:
     t.insert(i)
-print(t.autocomplete("ap"))                                        
+print(t.autocomplete("ap"))   
+
+class Trienode:
+    def __init__(self):
+        self.children={}
+        self.is_end=False
+class Trie:
+    def __init__(self):
+        self.root=Trienode()
+    def insert(self,word):
+        cur=self.root
+        for char in word:
+            if char not in cur.children:
+                cur.children[char]=Trienode()
+            cur=cur.children[char]
+        cur.is_end=True
+    def longest_common_prefix(self,strs):
+        if not strs:
+            return  ""
+        strs.sort()
+        first=strs[0]
+        last=strs[-1]
+        common_prefix=[]
+        for i in range(min(len(first),len(last))):
+            if first[i]==last[i]:
+                common_prefix.append(first[i])
+            else:
+                break
+        return "".join(common_prefix)
+trie=Trie()
+arr=["flower","flow","flat"]
+for i in arr:
+    trie.insert(i)
+print(trie.longest_common_prefix(arr))    

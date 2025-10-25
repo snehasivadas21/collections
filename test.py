@@ -23,13 +23,19 @@
 # d["person"]="aa"
 # print(d)
 
+def remove_str(arr):
+    i=0
+    while i<len(arr):
+        if isinstance(arr[i],str):
+           arr.pop(i)
+        else:
+            i+=1
+    return arr        
+print(remove_str(["2",2,"3",3,"1",3,4,"8"]))           
 
 def remove_str(arr):
-    for i in arr:
-        if type(i) == str:
-            arr.remove(i)
-    return arr
-print(remove_str(["2",2,"3",3]))           
+    return [i for i in arr if not isinstance(i,str)]
+print(remove_str(["3",3,"1",3,4,"8"]))           
 
 students = [
     {
@@ -83,4 +89,39 @@ def bubble(arr):
 arr=[22,1,34,2,1]
 bubble(arr)
 for i in arr:
-    print(i,end=" ")                
+    print(i,end=" ")   
+    
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class Linkedlist:
+    def __init__(self):
+        self.head=None
+    def insert_end(self,data):
+        new_node=Node(data)
+        if not self.head:
+            self.head=new_node
+            return 
+        curr=self.head
+        while curr.next:
+            curr=curr.next
+        curr.next=new_node
+    def delete_front(self):
+        if not self.head:
+            return None
+        self.head=self.head.next
+    def traverse(self):
+        curr=self.head
+        while curr:
+            print(curr.data,end=" ->")
+            curr=curr.next
+        print("None")
+ll=Linkedlist()
+arr=[1,2,3,4]
+for i in arr:
+    ll.insert_end(i)
+ll.traverse()    
+ll.delete_front()
+ll.traverse()
+                         

@@ -8,7 +8,16 @@
 #     for i in reversed(s):
 #         if d[i]==1:
 #             return i    
-# print(non_repeating("abbc"))    
+# print(non_repeating("abbc")) 
+
+def first_rep(a):
+    d={}
+    for i,v in enumerate(a):
+        if v in d:
+            return v
+        d[v]=i
+a=[1,2,3,3,4,4]
+print(first_rep(a))
 
 # def char_freq(s):
 #     d={}

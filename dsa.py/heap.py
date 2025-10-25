@@ -26,6 +26,27 @@ arr=["a","l","a","b"]
 heapsort(arr)
 printarr(arr)    
 
+class MinHeap:
+    def __init__(self):
+        self.heap=[]
+    def insert(self,value):
+        self.heap.append(value)
+        self.heapifyup(len(self.heap)-1)
+    def heapifyup(self,index):
+        parent=(index-1)//2
+        if index>0 and self.heap[index]<self.heap[parent]:
+            self.heap[index],self.heap[parent]=self.heap[parent],self.heap[index]
+            self.heapifyup(parent)
+    def display(self):
+        print(self.heap)
+max=MinHeap()
+max.insert(10)
+max.insert(30)
+max.insert(20)
+max.insert(40)
+max.insert(50)
+max.display()  
+
 class MaxHeap:
     def __init__(self):
         self.heap=[]
@@ -37,15 +58,37 @@ class MaxHeap:
         if index>0 and self.heap[index]>self.heap[parent]:
             self.heap[index],self.heap[parent]=self.heap[parent],self.heap[index]
             self.heapifyup(parent)
+    def heapifydown(self,i):
+        largest =i
+        n=len(self.heap)
+        l=2*i+1
+        r=2*i+2
+        if l<n and self.heap[l]>self.heap[largest]:
+            largest=l
+        if r<n and self.heap[r]>self.heap[largest]:
+            largest=r
+        if largest != i:
+            self.heap[i],self.heap[largest]=self.heap[largest],self.heap[i]
+            self.heapifydown(largest)
+    def delete(self):
+        if not self.heap:
+            return None
+        if len(self.heap)==1:
+            return self.heap.pop()
+        max_item=self.heap[0]
+        self.heap[0]=self.heap.pop()
+        self.heapifydown(0)
+        return max_item
+        
     def display(self):
         print(self.heap)
-max=MaxHeap()
-max.insert(10)
-max.insert(30)
-max.insert(20)
-max.insert(40)
-max.insert(50)
-max.display()  
+heap=MaxHeap()
+heap.insert(40)
+heap.insert(20)
+heap.insert(70)
+heap.display()
+print(heap.delete())
+heap.display()
 
 def heapify(arr,n,i):
     largest=i 

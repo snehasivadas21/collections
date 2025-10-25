@@ -1,7 +1,14 @@
 # def count_vowels(s):
 #     vowels="aeiou"
 #     return sum( 1 for i in s if i in vowels)
-# print(count_vowels("sneha"))  
+# print(count_vowels("sneha"))
+
+s="interview preparation helps you improve"
+word=s.split()
+vowels="aeiou"
+m=max(word,key=lambda x:sum(1 for i in x if i in vowels))
+c=["removed" if i==m else i for i in word]
+print(" ".join(c))  
 
 # str1="sky is blue"
 # print(" ".join(str1.split()[::-1]))
@@ -65,6 +72,17 @@ print(list(filter(lambda x:x%2==0,li)))
 nums=[1,2,3,4,4,2,5]
 duplicates = [x for x in set(nums) if nums.count(x)>1]
 print(duplicates)
+
+def flattend(a):
+    flat=[]
+    for i in a:
+        if isinstance(i,list):
+            flat.extend(flattend(i))
+        else:
+            flat.append(i)
+    return flat        
+a=[1,2,[3,4,[4,5,[7]]]]
+print(flattend(a))
 
 my_list = [1, 2, 2, 3, 4, 4, 5]
 my_set = {6, 7}
@@ -210,6 +228,10 @@ print(sorted(list(key=lambda x:x['age'],reverse=True)))
 # del d[output]
 # print(d)
 
+s=max(d,key=lambda k:len(d[k]))
+del d[s]
+print(d)
+
 # a={"a":[1,2,3],"b":[4,5,6],"c":[7,8,9],"d":[10,11,12]}
 # output=sorted(a,key=a.get)
 # del a[output[-2]]
@@ -282,45 +304,27 @@ print(max_key)
 maxi=max(d,key=lambda x:d[x]["score"])
 print(maxi)
 
-# try:
-#     x=10/0
-#     b=10/2
-# except  ZeroDivisionError:
-#     print("error")
-# else:
-#     print("success")
-# finally:
-#     print("cleanup")            
+dept_salaries = {
+    "CSE": [50000, 60000, 70000],
+    "ECE": [45000, 55000, 65000],
+    "MECH": [40000, 42000, 43000]
+}
 
-# for i in range(5):
-#    if  i == 5:
-#       break
-# else:
-#    print("loop completed")   
-
-# import copy
-# a=[[1,2],3]
-
-# shallow=copy.copy(a)
-# deep=copy.deepcopy(a)
-# a[0][0]=9
-
-# print(a)
-# print(deep)
-# print(shallow)
-
-# def is_prime(n):
-#     if n<2:
-#         return False
-#     for i in range(2,int(n**0.5)+1):
-#         if n%i==0:
-#             return False
-#     return True
-# def prime(arr):
-#     return [i for i in arr if is_prime(i)]  
-
-# arr=[4,7,10,11]
-# print(prime(arr))  
+max_avg=0
+high_dept=""
+for d,s in dept_salaries.items():
+    total=0
+    count=0
+    for i in s:
+        total+=i
+        count+=1
+    avg=total/count
+    if avg>max_avg:
+        max_avg=avg
+        high_dept=d
+del dept_salaries[high_dept]
+print(high_dept)
+print(dept_salaries)
 
 # def sum(n):
 #     total=0
@@ -423,14 +427,6 @@ print(nums)
 def key_same(d):
     return len({type(k) for k in d.keys()}) == 1
 print(key_same({"a":1,"b":2}))    
-
-from datetime import datetime
-
-now = datetime.now()
-print("Current datetime:", now)
-print("Current time only:", now.strftime("%H:%M:%S"))
-print("Current date only:", now.strftime("%Y-%m-%d"))
-
 
 my_list = ["short", "medium", "very"]
 max_len = max(len(s) for s in my_list)
