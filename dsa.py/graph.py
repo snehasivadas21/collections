@@ -56,7 +56,6 @@ g.display()
 print(g.short('A','C')) 
 print(g.is_cyclic())  
          
-
 class DSU:
     def __init__(self,n):
         self.parent=list(range(n))
@@ -100,4 +99,39 @@ edges = [
         (0, 3, 5)
     ]
 print(kruskal(4,edges))
+
+from collections import deque
+
+def dfs(graph,start,visited=None):
+    if visited is None:
+        visited=set()
+    print(start,end=" ")
+    visited.add(start)
+    for nei in graph[start]:
+        if nei not in visited:
+            dfs(graph,nei,visited)
+
+def bfs(graph,start): #O(1)
+    visited=set()
+    queue=deque([start])
+    visited.add(start)
+    while queue:
+        node=queue.popleft()
+        print(node,end=" ")
+        for nei in graph[node]:
+            if nei not in visited:
+                visited.add(nei)
+                queue.append(nei)
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+dfs(graph, 'A')
+bfs(graph,'A')
+            
         

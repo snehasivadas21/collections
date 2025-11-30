@@ -26,11 +26,31 @@ class Trie:
                 return False
             cur=cur.children[char]
         return True
+    def delete(self,word):
+        def _delete(node,word,depth):
+            if depth==len(word):
+                if not node.is_end:
+                    return False
+                node.is_end=False
+                return len(node.children)==0
+            char=word[depth]
+            if char not in node.children:
+                return False
+            child_node=node.children[char]
+            delete_child=_delete(child_node,word,depth+1)
+            if delete_child:
+                del node.children[char]
+                return len(node.children)==0 and not node.is_end
+            return False
+        _delete(self.root,word,0)
+
 trie=Trie()
 trie.insert("apple")
-trie.insert("banana")
-print(trie.search("apple"))
-print(trie.prefix("bant"))       
+trie.insert("app")
+print(trie.search("app"))
+print(trie.prefix("app")) 
+trie.delete("app")
+print(trie.search("app"))      
 
 class Trienode:
     def __init__(self):

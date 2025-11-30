@@ -20,7 +20,16 @@ def height(root): #O(n)
         return -1
     left=height(root.left)
     right=height(root.right)
-    return 1+max(left,right)  
+    return 1+max(left,right) 
+
+def isBalanced(root):
+    if root is None:
+        return True
+    lHeight=height(root.left)
+    rHeight=height(root.right)
+    if abs(lHeight-rHeight)>1:
+        return False
+    return isBalanced(root.left) and isBalanced(root.right)
 
 def maximum(root):
     if root is None:
@@ -28,6 +37,11 @@ def maximum(root):
     left=maximum(root.left)
     right=maximum(root.right)
     return max(root.data,left,right)
+
+def minimum(root):
+    if root.left is None:
+        return root.data
+    return minimum(root.left)
 
 def inorder(root): #O(n)
     if root:
@@ -39,9 +53,10 @@ r=TreeNode(50)
 insert(r,30)
 insert(r,60)
 print(height(r))
+print("True" if isBalanced(r) else "False")
 inorder(r)
-print(maximum(r))  
-
+print(maximum(r))
+print(minimum(r))  
 
 class Node:
     def __init__(self,val):
@@ -106,6 +121,14 @@ def lca(root,n1,n2):
         return lca(root.right,n1,n2)
     else:  
         return root
+
+def isidential(r1,r2):
+    if r1 is None or r2 is None:
+        return False
+    if r1 is None and r2 is None:
+        return True
+    return (r1.data==r2.data and isidential(r1.left,r2.left) and isidential(r1.right,r2.right)) 
+   
 r = Node(20)
 r.left = Node(10)
 r.right = Node(30)
@@ -113,6 +136,34 @@ r.left.left = Node(5)
 r.left.right = Node(15)
 print(lca(r,5,15).data)
 
+r1=Node(20)
+r1.left=Node(10)
+r1.right=Node(30)
+if isidential(r,r1):
+    print("yes")
+else:
+    print("no") 
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+def arrtoBst(arr,start,end):
+    if start>end:
+        return None
+    mid=start+(end-start)//2
+    root=Node(arr[mid])
+    
+    root.left=arrtoBst(arr,start,mid-1)
+    root.right=arrtoBst(arr,mid+1,end)
+    return root
+def Bst(arr):
+    return arrtoBst(arr,0,len(arr)-1)
+arr=[1, 5, 9, 14, 23, 27]
+r=Bst(arr)
+print(r.data)
+    
 class TreeNode:
     def __init__(self,val):
         self.val=val

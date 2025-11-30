@@ -111,7 +111,7 @@ def largest(arr,k):
     for _ in range(k):
         # largest_element.append(arr[0])
         kth=arr[0]
-        arr[i],arr[n-1]=arr[n-1],arr[i]
+        arr[0],arr[n-1]=arr[n-1],arr[0]
         n-=1 
         heapify(arr,n,0)
     # return largest_element 

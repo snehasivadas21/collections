@@ -1,5 +1,5 @@
 def bineary_search(arr,high,low,x): #Olog(n) - O(1)
-    if high >= low:
+    if high > low:
         mid=(high+low)//2
         if arr[mid] == x:
             return mid
@@ -74,7 +74,38 @@ def remove_char(string,c):
     if string[0]==c:
         return remove_char(string[1:],c)
     else:
-        return string[0]+remove_char(string[1:])
+        return string[0]+remove_char(string[1:],c)
 print(remove_char("balance","l"))
+
+def rotate(l,n):
+    if n==0:
+        return l
+    else:
+        return rotate(l[-1:]+l[:-1],n-1)
+l=[1,2,3,4,5]
+n=2
+print(rotate(l,n))
+
+def sum_digit(n):
+    if int(n)==0:
+        return 0
+    return (int(n)%10)+sum_digit(int(n)//10)
+n="1234"
+print(sum_digit(n))
+
+def rem_dup(arr,seen=None):
+    if seen is None:
+       seen=set()
+    if not arr:
+        return []
+    first=arr[0]
+    if first in seen:
+        return rem_dup(arr[1:],seen)
+    else:
+        seen.add(first)
+        return [first]+rem_dup(arr[1:],seen)
+arr=[12,2,3,2,12,5]
+print(rem_dup(arr))
+        
 
     

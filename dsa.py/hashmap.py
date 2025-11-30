@@ -1,24 +1,3 @@
-# def non_repeating(s):
-#     d={}
-#     for i in s:
-#         if i in d:
-#             d[i]+=1
-#         else:
-#             d[i]=1
-#     for i in reversed(s):
-#         if d[i]==1:
-#             return i    
-# print(non_repeating("abbc")) 
-
-def first_rep(a):
-    d={}
-    for i,v in enumerate(a):
-        if v in d:
-            return v
-        d[v]=i
-a=[1,2,3,3,4,4]
-print(first_rep(a))
-
 # def char_freq(s):
 #     d={}
 #     for i in s:
@@ -29,37 +8,54 @@ print(first_rep(a))
 #     return d
 # print(char_freq("hello world")) 
 
-def remove(s):
-    seen=set()
-    result=[]
-    for i in s:
-        if i  not in seen:
-            seen.add(i)
-            result.append(i)
-    return "".join(result)
-s="geeksforgeeks"
-print(remove(s))
+# def non_repeating(s):
+#     d={}
+#     for i in s:
+#         d[i]=d.get(i,0)+1
+#     for i in reversed(s):
+#         if d[i]==1:
+#             return i    
+# print(non_repeating("abbc")) 
 
-def is_anagram(s1,s2):
-    if len(s1)!=len(s2):
-        return False
-    count={}
-    for i in s1:
-        if i not in count:
-            count[i]=1
-        else:
-            count[i]+=1
-    for i in s2:
-        if i not in count:
-            return False
-        count[i]-=1
-    for i in count.values():
-        if i!=0:
-            return False
-    return True
-s1="triangle"
-s2="integral"
-print(is_anagram(s1,s2))
+a="programming"
+d={}
+for i in a:
+    d[i]=d.get(i,0)+1
+r=""    
+for i in a:
+    if d[i]==1:
+        r+=i
+print(r)        
+
+def first_rep(a):
+    d={}
+    for i,v in enumerate(a):
+        if v in d:
+            return v
+        d[v]=i
+a=[1,2,3,3,4,4]
+print(first_rep(a))
+
+# def is_anagram(s1,s2):
+#     if len(s1)!=len(s2):
+#         return False
+#     count={}
+#     for i in s1:
+#         if i not in count:
+#             count[i]=1
+#         else:
+#             count[i]+=1
+#     for i in s2:
+#         if i not in count:
+#             return False
+#         count[i]-=1
+#     for i in count.values():
+#         if i!=0:
+#             return False
+#     return True
+# s1="triangle"
+# s2="integral"
+# print(is_anagram(s1,s2))
 
 class Hash:
     def __init__(self,size=10):

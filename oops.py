@@ -31,7 +31,7 @@ class Child(Parent):
         self.age=age
     def display(self):
         super().display()
-        print(f"{self.age}")
+        print(f"{self.name}---{self.age}")
 obj=Child("sneha",45)
 obj.display()
 
@@ -42,7 +42,6 @@ class Person:
 
     def get_pin(self):
         return self.__pin
-
 class Child(Person):
     def __init__(self, name, pin, age):
         super().__init__(name, pin)
@@ -73,12 +72,52 @@ class Bank:
 
     def get_salary(self):
         return self.__salary
+    
+    def set_salary(self,amount):
+        if amount>0:
+            self.__salary=amount
 b=Bank("sneha","HR",50000)
 print(b.name)    
 print(b._dept)    
 # print(b.__salary)
 print(b.get_salary())  #getter
 print(b._Bank__salary) #name mangling
+b.set_salary(55000) #setter
+
+class Emp:
+    def __init__(self,salary):
+        self.__salary=salary
+    @property
+    def salary(self):
+        return self.__salary
+    @salary.setter
+    def salary(self,amount):
+        if amount>0:
+            self.__salary=amount
+e=Emp(60)
+print(e.salary)
+e.salary=70
+print(e.salary)
+
+class Human:
+    def __init__(self,age):
+        self.__age=age
+    @property    
+    def age(self):
+        return self.__age
+class Robot(Human):
+    def __init__(self,name,id,age):
+        super().__init__(age)
+        self.name=name
+        self.id=id
+    @property
+    def get(self):
+        return self.name,self.age
+        
+r=Robot("a",1,30)
+print(r.name)
+print(r.age)
+print(r.get)
 
 # class Rectangle:
 #     def __init__(self,length,breadth):
@@ -97,6 +136,30 @@ class Student:
 s1 = Student("Alice")
 s2 = Student("Bob")
 print("Number of instances:", Student.count)
+class Human:
+    count=0
+    @classmethod
+    def class_method(cls):
+        cls.count+=1
+Human.class_method()
+Human.class_method()
+print(Human.count)
+class Student:
+    def __init__(self,name,mark):
+        self.name=name
+        self.mark=mark
+    def grade(self):
+        avg=sum(self.mark.values())/len(self.mark)
+        if avg>=90:
+            return "A"
+        elif avg>=75:
+            return "B"
+        elif avg>=60:
+            return "C"
+        else:
+            return "D"
+s=Student("Sneha",{"a":90,"c":80})
+print(s.grade())
 
 # from abc import ABC,abstractmethod
 # class Shape(ABC):
@@ -110,6 +173,29 @@ print("Number of instances:", Student.count)
 #         return 3.14 * self.radius ** 2  
 # c=Circle(5)
 # print(c.area())
+
+from abc import ABC,abstractmethod
+class Employee(ABC):
+    @abstractmethod
+    def calculate_salary(self):
+        pass
+class Manager(Employee):
+    def __init__(self,base,bonus):
+        self.base=base
+        self.bonus=bonus
+    def calculate_salary(self):
+        return self.base+self.bonus
+class Developer(Employee):
+    def __init__(self,base,hours,rate):
+        self.base=base
+        self.hours=hours
+        self.rate=rate
+    def calculate_salary(self):
+        return self.base+(self.hours*self.rate)
+m=Manager(5000,1000)
+d=Developer(4000,20,500)
+print(m.calculate_salary())
+print(d.calculate_salary())
 
 # class Audio:
 #     def play(self):
@@ -139,7 +225,7 @@ import math
 square=lambda x:(math.sqrt(x))**2
 print(square(5))
 
-from datetime import datetime,timedelta
+from datetime import datetime,timedelta,date
 
 print((datetime.now()-timedelta(days=5)).strftime('%Y-%m-%d'))
 
@@ -147,6 +233,18 @@ now = datetime.now()
 print("Current datetime:", now)
 print("Current time only:", now.strftime("%H:%M:%S"))
 print("Current date only:", now.strftime("%Y-%m-%d"))
+print(datetime.now().time())
+print(datetime.now().date())
+print(datetime.today().strftime("%Y"))
+print(datetime.today().strftime("%B"))
+print(datetime.today().strftime("%W"))
+print(datetime.today().strftime("%j"))
+print(datetime.today().strftime("%d"))
+print(datetime.today().strftime("%A"))
+
+today=date.today()
+new_year=date(today.year+1,1,1)
+print((new_year-today).days)
  
 # def count(n):
 #     for i in range(1,n+1):
@@ -195,8 +293,14 @@ def prime_generator():
         n += 1
 gen = prime_generator()
 for _ in range(5):
-    print(next(gen))      
+    print(next(gen))  
 
+# def read_file(path):
+#     with open(path,'r') as file:
+#         for line in file:
+#             yield line
+# for line in read_file("bigdata.txt"):
+#     print(line.strip())        
 
 # a=[1,2,3]
 # b=iter(a)
@@ -276,16 +380,16 @@ def divide(a, b):
 print(divide(10, 2))  
 print(divide(5, 0))   
 
-# def decorator(func):
-#     def wrapper(*args):
-#         print(f"{func.__name__}")
-#         return func(*args)
-#     return  wrapper
-# @decorator
-# def add(a,b):
-#    return a+b
-# print(add(5,6))   
-
+def decorator(func):
+    def wrapper(*args,**kwargs):
+        print("access")
+        func(*args,**kwargs)
+    return wrapper
+@decorator
+def add(a,b):
+    print(a+b)
+add(5,4)    
+      
 # import time
 # def decorator(func):
 #     def wrapper(*args,**kwargs):
@@ -297,6 +401,7 @@ print(divide(5, 0))
 #     return wrapper
 # @decorator
 # def reverse(s):
+#     time.sleep(5)
 #     output=[]
 #     s=s.split()
 #     for i in s:
@@ -314,11 +419,51 @@ print(divide(5, 0))
 class A:
     def hello(self):
         print("A")
-class B:
+class B(A):
     def hai(self):
         print("B")
-class C(A,B):
+class C(B):
     pass
 obj=C()
 obj.hello()
 obj.hai()  
+
+class Vector:
+    def __init__(self,x,y):
+        self.x=x
+        self.y=y
+    def __add__(self,other):
+        return Vector(self.x+other.x,self.y+other.y)
+    def __mul__(self,scalar):
+        return Vector(self.x*scalar,self.y*scalar)
+    def __repr__(self):
+        return f"{self.x},{self.y}"
+v1=Vector(2,3)
+v2=Vector(4,1)
+print(v1+v2)
+print(v1*3)
+class Queue:
+    def __init__(self):
+        self.items=[]
+    def enqueue(self,item):
+        self.items.append(item)
+        print(f"{item}")
+    def dequeue(self):
+        if self.is_empty():
+            print("empty")
+            return None
+        removed=self.items.pop(0)
+        return removed
+    def is_empty(self):
+        return len(self.items)==0
+    def display(self):
+        print(self.items)
+
+q=Queue()
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+q.display()
+q.dequeue()
+q.display()
+q.dequeue()
