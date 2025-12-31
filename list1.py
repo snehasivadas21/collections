@@ -85,6 +85,21 @@ numbers = [2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15]
 p=list(filter(lambda x:prime(x),numbers))
 print(p)
 
+def is_prime(n):
+    if n<2:
+        return False
+    for i in range(2,int(n**0.5)+1):
+        if n%i==0:
+            return False
+    return True
+prime=[]
+num=2
+while len(prime)<100:
+    if is_prime(num):
+        prime.append(num)
+    num+=1
+print(prime)    
+
 nums=[1,2,3,4,4,2,5]
 duplicates = [x for x in set(nums) if nums.count(x)>1]
 print(duplicates)
@@ -185,6 +200,17 @@ def flattend(a):
     return flat        
 a=[1,2,[3,4,[4,5,6,[7]]]]
 print(flattend(a))
+
+def flat(arr):
+    output=[]
+    for i in reversed(arr):
+        if isinstance(i,list):
+            output.append(flat(i))
+        else:
+            output.append(i)
+    return output
+arr=[2,1,3,[4,4,5,[9,0,3]],[9]]
+print(flat(arr))
 
 my_list = [1, 2, 2, 3, 4, 4, 5]
 my_set = {6, 7}

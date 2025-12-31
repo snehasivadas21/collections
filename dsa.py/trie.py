@@ -100,6 +100,15 @@ class Trie:
                 cur.children[char]=Trienode()
             cur=cur.children[char]
         cur.is_end=True
+    def count_word(self,node=None):
+        if node is None:
+            node=self.root
+        count=0
+        if node.is_end:
+            count+=1
+        for i in node.children.values():
+            count+=self.count_word(i)
+        return count
     def longest_common_prefix(self,strs):
         if not strs:
             return  ""
@@ -117,4 +126,5 @@ trie=Trie()
 arr=["flower","flow","flat"]
 for i in arr:
     trie.insert(i)
+print(trie.count_word())    
 print(trie.longest_common_prefix(arr))    

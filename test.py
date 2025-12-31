@@ -163,6 +163,41 @@
 # b.pin=4321
 # print(b.pin)
 
+n=5
+val=15
+for i in range(n,0,-1):
+    for j in range(i):
+        print(val,end=" ")
+        val-=1
+    print()    
+    
+def non_repeating(s):
+    d={}
+    for i in s:
+        d[i]=d.get(i,0)+1
+    for i in s:
+        if d[i]==1:
+            return i    
+print(non_repeating("abbc"))   
+
+a={1,2,3}
+b={3,4,5}
+print(a & b)
+
+if x=0:
+ print("A")
+else:
+ print("B")
+
+a/b and a//b
+a and b - a & b
+
+arr = [1,2,2,3,4]
+for i in arr[:]:
+ if i == 2:
+   arr.remove(i)
+print(arr)
+
 def copy_file():
     with open("input.txt","r") as file:
         data=file.read()

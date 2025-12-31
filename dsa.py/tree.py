@@ -13,7 +13,14 @@ def insert(root,data):
         root.right=insert(root.right,data)
     else:
         root.left=insert(root.left,data)
-    return root                
+    return root 
+
+def search(root,data):
+    if root is None or root.data==data:
+        return root
+    if root.data>data:
+        return search(root.left,data)
+    return search(root.right,data)                  
                         
 def height(root): #O(n)
     if not root:
@@ -52,6 +59,7 @@ def inorder(root): #O(n)
 r=TreeNode(50)
 insert(r,30)
 insert(r,60)
+print("found" if search(r,90) else "not found")
 print(height(r))
 print("True" if isBalanced(r) else "False")
 inorder(r)

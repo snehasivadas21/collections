@@ -388,7 +388,17 @@ def decorator(func):
 @decorator
 def add(a,b):
     print(a+b)
-add(5,4)    
+add(5,4)  
+
+def decorator(func):
+    def wrapper(*args,**kwargs):
+        result=func(*args,**kwargs)
+        return (result,)
+    return wrapper
+@decorator
+def add(a,b):
+    print(a+b)
+add(5,6)    
       
 # import time
 # def decorator(func):
