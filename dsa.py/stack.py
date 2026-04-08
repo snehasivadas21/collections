@@ -62,6 +62,22 @@ def flat(a):
 
 a=[1,[2,3,[4,5]],6,[7]]
 print(flat(a))
+
+def remove_dup(stack):
+    temp_stack = []
+    seen = set()
+    while stack:
+        val=stack.pop()
+        if val not in seen:
+            seen.add(val)
+            temp_stack.append(val)
+    while temp_stack:
+        stack.append(temp_stack.pop())
+    return stack            
+
+stack = [1, 2, 3, 2, 4, 1]
+print(remove_dup(stack))
+
 class Node:
     def __init__(self,data):
         self.data=data

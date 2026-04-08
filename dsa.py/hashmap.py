@@ -17,6 +17,20 @@
 #             return i    
 # print(non_repeating("abbc")) 
 
+def least(nums):
+    d={}
+    for i in nums:
+        if i not in d:
+            d[i]=1
+        else:
+            d[i]+=1
+
+    sorted_items = sorted(d.items(),key=lambda x:x[1])
+    return [sorted_items[0][0],sorted_items[1][0]]
+
+nums=[1,1,2,2,2,3,4,4,5]
+print(least(nums))
+
 a="programming"
 d={}
 for i in a:
@@ -90,3 +104,22 @@ print(h.get("b"))
 print(h.table)
 h.delete("a")
 print(h.table)
+
+class HashTable:
+    def __init__(self,size):
+        self.size=size
+        self.table=[None]*size
+
+    def insert(self,key):
+        index=key % self.size  
+
+        while self.table[index] is not None:
+            index=(index+1) % self.size
+        self.table[index] = key
+
+h=HashTable(7)
+h.insert(50)
+h.insert(700)
+h.insert(84)
+print(h.table)
+

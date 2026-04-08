@@ -90,6 +90,14 @@ def remove(s):
 s="geeksforgeeks"
 print(remove(s)) 
 
+def second_long(s):
+    words=list(set(s.split()))
+    words.sort(key=len,reverse=True)
+    return words[1] if len(words)>=2 else None
+
+s="Python is powerful and easy to learn"
+print(second_long(s))
+
 s="geekss"
 res=[]
 for i in set(s):

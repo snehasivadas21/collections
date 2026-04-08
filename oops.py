@@ -230,6 +230,8 @@ from datetime import datetime,timedelta,date
 print((datetime.now()-timedelta(days=5)).strftime('%Y-%m-%d'))
 
 now = datetime.now()
+d=lambda : datetime.now().strftime("%H:%m:%s")
+print(d)
 print("Current datetime:", now)
 print("Current time only:", now.strftime("%H:%M:%S"))
 print("Current date only:", now.strftime("%Y-%m-%d"))
@@ -393,7 +395,8 @@ add(5,4)
 def decorator(func):
     def wrapper(*args,**kwargs):
         result=func(*args,**kwargs)
-        return (result,)
+        return (result,) 
+    #   return [result]
     return wrapper
 @decorator
 def add(a,b):
@@ -477,3 +480,18 @@ q.display()
 q.dequeue()
 q.display()
 q.dequeue()
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return f"Point({self.x}, {self.y})"
+
+    def __repr__(self):
+        return f"Point(x={self.x}, y={self.y})"
+
+p = Point(3, 4)
+print(p)        
+print(repr(p))  

@@ -224,6 +224,74 @@ class Node:
     def __init__(self,data):
         self.data=data
         self.next=None
+class ll:
+    def __init__(self):
+        self.head=None
+    def kthlar(self,k):
+        arr=[]
+        curr=self.head
+        while curr:
+            arr.append(curr.data)
+            curr=curr.next
+        arr.sort(reverse=True)
+        return arr[k-1] if k<=len(arr) else None
+
+l=ll()
+l.head=Node(56)
+l.head.next=Node(19)
+l.head.next.next=Node(23)
+l.head.next.next.next=Node(89)
+print(l.kthlar(2))
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class ll:
+    def __init__(self):
+        self.head=None
+    def insert(self,data):
+        new=Node(data)
+        if not self.head:
+            self.head=new
+            return
+        curr=self.head
+        while curr.next:
+            curr=curr.next
+        curr.next=new
+    def merge(self,l1,l2):
+        dummy=Node(0)
+        curr=dummy
+        while l1 and l2:
+            if l1.data <= l2.data:
+                curr.next=l1
+                l1=l1.next
+            else:
+                curr.next=l2
+                l2=l2.next
+            curr=curr.next
+        curr.next = l1 if l1 else l2
+        return dummy.next
+        
+list1=ll()
+for i in [2,4,6]:
+    list1.insert(i)
+list2=ll()
+for i in [1,3,5]:
+    list2.insert(i)
+
+merged=list1.merge(list1.head,list2.head)    
+
+curr=merged
+while curr:
+    print(curr.data,end="->")
+    curr=curr.next
+print("None")    
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
         self.prev=None
 
 def insert_beg(head,data):
@@ -289,6 +357,7 @@ insert_before(node3,20)
 
 head=insert_end(head,4)
 traverse(head)
+
 class Node:
     def __init__(self,data):
         self.data=data

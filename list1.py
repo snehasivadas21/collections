@@ -212,6 +212,17 @@ def flat(arr):
 arr=[2,1,3,[4,4,5,[9,0,3]],[9]]
 print(flat(arr))
 
+def sum_nest(arr):
+    total=0
+    for i in arr:
+        if isinstance(i,list):
+            total+=sum_nest(i)
+        elif isinstance(i,int):
+            total+=i
+    return total
+arr=[1, [2, 3], [4, [5, 6]], 7]
+print(sum_nest(arr))            
+
 my_list = [1, 2, 2, 3, 4, 4, 5]
 my_set = {6, 7}
 my_set.update(my_list) 
@@ -283,7 +294,8 @@ total=0
 for i in li:
     if isinstance(i,(int,float)) and i>0:
         total+=i
-print(total)   
+print(total)
+print(sum(i for i in li if isinstance(i,(int,float)) and i>0))   
 
 my_list = [1, 2.5, 3, "hello", 4.0, 5, True, 6.7]
 result=[]
