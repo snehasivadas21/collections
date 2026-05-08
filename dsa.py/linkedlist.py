@@ -28,9 +28,6 @@ class Linkedlist:
         while fast and fast.next:
             fast=fast.next.next
             slow=slow.next
-        #     if slow==fast:
-        #         return True
-        # return False
         return slow.data  
 
     def cycle(self): #O(n)
@@ -79,8 +76,8 @@ class Linkedlist:
         while right:
             if left.data != right.data:
                 return False
-            left=left.data
-            right=right.data
+            left=left.next
+            right=right.next
         return True                    
 
     def delete(self,n):
@@ -196,12 +193,28 @@ class Linkedlist:
         return self.head  
     
     def remove_dup(self):
-        cur=self.head
-        while cur.next:
-            if cur.data == cur.next.data:
-                cur.next=cur.next.next
+        seen = set()
+        curr = self.head
+        prev = None
+
+        while curr:
+            if curr.data in seen:
+                prev.next = curr.next
             else:
-                cur=cur.next   
+                seen.add(curr.data)
+                prev = curr
+            curr = curr.next 
+
+    def swap(self):
+        if not self.head or not self.head.next:
+            return self.head
+        prev=None
+        curr=self.head
+        while curr.next:
+            prev=curr
+            curr=curr.next
+        self.head.data,curr.data=curr.data,self.head.data
+        return self.head            
 
     def traverse(self): #O(n)
         curr=self.head
@@ -301,28 +314,6 @@ def insert_beg(head,data):
         head.prev=new_node
     return new_node
 
-def insert_after(node,data):
-    if not node:
-        print("error")
-        return 
-    new_node=Node(data)
-    new_node.prev=node
-    new_node.next=node.next
-    if node.next:
-        node.next.prev=new_node
-    node.next=new_node
-
-def insert_before(node,data):
-    if not node:
-        print("error")
-        return 
-    new_node=Node(data)
-    new_node.prev=node.prev
-    new_node.next=node
-    if node.prev:
-        node.prev.next=new_node
-    node.prev=new_node
-
 def insert_end(head,data):
     new_node=Node(data)
     if not head:
@@ -334,6 +325,61 @@ def insert_end(head,data):
     new_node.prev=curr
     return head
 
+def reverse(head):
+    if not head or not head.next:
+        return head
+    prev=None
+    curr=head
+    while curr:
+        prev=curr.prev
+        curr.prev=curr.next
+        curr.next=prev
+
+        curr=curr.prev
+    return prev.prev    
+
+def palindrome(head):
+    if not head and not head.next:
+        return True
+    left=head
+    right=head
+    while right.next:
+        right=right.next
+    while left!=right and left.prev!=right:
+        if left.data != right.data:
+            return False
+        left=left.next
+        right=right.prev
+    return True          
+
+def sort(head):
+    if not head:
+        return head
+    while True:
+        a=True
+        curr=head
+        while curr.next:
+            if curr.data>curr.next.data:
+                curr.data,curr.next.data=curr.next.data,curr.data
+                a=False
+            curr=curr.next
+        if a==True:
+            break    
+    return head 
+
+def remove_middle(head):
+    if not head or not head.next:
+        return None
+    fast=slow=head
+    while fast and fast.next:
+        fast=fast.next.next
+        slow=slow.next
+    if slow.prev:
+        slow.prev.next = slow.next
+    if slow.next:
+        slow.next.prev = slow.prev
+    return head    
+
 def traverse(head):
     curr=head
     while curr:
@@ -344,19 +390,19 @@ def traverse(head):
 head=None
 head=insert_beg(head,1)
 
-node2=Node(2)
-node3=Node(3)
-head.next=node2
-node2.prev=head
-node2.next=node3
-node3.prev=node2
-traverse(head)
-
-insert_after(node2,10)
-insert_before(node3,20)
-
 head=insert_end(head,4)
+head=insert_end(head,5)
+head=insert_end(head,6)
 traverse(head)
+
+head=reverse(head)
+print(palindrome(head))
+sort(head)
+remove_middle(head)
+traverse(head)
+
+
+
 
 class Node:
     def __init__(self,data):

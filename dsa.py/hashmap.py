@@ -105,21 +105,127 @@ print(h.table)
 h.delete("a")
 print(h.table)
 
-class HashTable:
-    def __init__(self,size):
+class Node:
+    def __init__(self,key,value):
+        self.key=key
+        self.value=value
+        self.next=None
+class Hashtable:
+    def __init__(self,size=10):
         self.size=size
         self.table=[None]*size
+        
+    def _hash(self,key):
+        return hash(key)%self.size
+        
+    def insert(self,key,value):
+        index=self._hash(key)
+        head=self.table[index]
+        curr=head
+        while curr:
+            if curr.key==key:
+                curr.value=value
+                return 
+            curr=curr.next
+        new_node=Node(key,value)
+        new_node.next=head
+        self.table[index]=new_node
+    
+    def get(self,key):
+        index=self._hash(key)
+        curr=self.table[index]
+        while curr:
+            if curr.key==key:
+                return curr.value
+            curr=curr.next
+        return None
+    
+    def delete(self,key):
+        index=self._hash(key)
+        curr=self.table[index]
+        prev=None
+        while curr:
+            if curr.key==key:
+                if prev:
+                    prev.next=curr.next
+                else:
+                    self.table[index]=curr.next
+                    return True
+            prev=curr
+            curr=curr.next 
+        return False            
+    
+    def display(self):
+        for i in range(self.size):
+            print(f"{i}",end="  ")
+            curr=self.table[i]
+            while curr:
+                print(f"({curr.key}-{curr.value})",end="  ")
+                curr=curr.next
+            print("None")
+            
+h=Hashtable(5)
+h.insert("a",50)
+h.insert("b",60)
+h.insert("c",30)
+h.insert("d",20)
+h.insert("e",40)
+h.display()
+h.get("d")
 
-    def insert(self,key):
-        index=key % self.size  
+class HashTable:
+    def __init__(self, size=10):
+        self.size = size
+        self.table = [None] * size
+        self.DELETED = "DELETED" 
+
+    def _hash(self, key):
+        return hash(key) % self.size
+    
+    def insert(self, key, value):
+        index = self._hash(key)
+        start_index = index
+        
+        while self.table[index] is not None and self.table[index] != self.DELETED:
+            if self.table[index][0] == key:
+                self.table[index] = (key, value)
+                return           
+            index = (index + 1) % self.size       
+            if index == start_index:
+                raise Exception("Hash Table is full")       
+        self.table[index] = (key, value)  
+    
+    def search(self, key):
+        index = self._hash(key)
+        start_index = index
 
         while self.table[index] is not None:
-            index=(index+1) % self.size
-        self.table[index] = key
+            if self.table[index] != self.DELETED and self.table[index][0] == key:
+                return self.table[index][1]
+            index = (index + 1) % self.size
+            if index == start_index:
+                break
+        return None  
+    
+    def delete(self, key):
+        index = self._hash(key)
+        start_index = index
 
-h=HashTable(7)
-h.insert(50)
-h.insert(700)
-h.insert(84)
-print(h.table)
+        while self.table[index] is not None:
+            if self.table[index] != self.DELETED and self.table[index][0] == key:
+                self.table[index] = self.DELETED
+                return True
+            index = (index + 1) % self.size
+            if index == start_index:
+                break
+        return False   
+
+ht = HashTable(5)
+ht.insert(1, "A")
+ht.insert(6, "B")   
+ht.insert(11, "C")  
+print(ht.table)
+ht.delete(6)
+print(ht.search(11))       
+        
 

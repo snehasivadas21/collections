@@ -98,6 +98,22 @@ def second_long(s):
 s="Python is powerful and easy to learn"
 print(second_long(s))
 
+def upper_case(s,n):
+    s=s.split()
+    r=""
+    for i in s:
+        m=""
+        for j in range(len(i)):
+            if j==n:
+                m+=i[j].upper()
+            else:
+                m+=i[j]
+        r+=m+" "
+    return r    
+s="my name is sneha"
+n=1
+print(upper_case(s,n))
+
 s="geekss"
 res=[]
 for i in set(s):
@@ -179,15 +195,16 @@ for i in range(len(a)-1):
         r=a[i]
 print(r*ml) 
 
-def permute(s, answer=""):
-    if len(s) == 0:
-        print(answer)
-        return
+def permutations(s):
+    if len(s) <= 1:
+        return [s]   
+    result = []
     for i in range(len(s)):
-        ch = s[i]
-        left = s[:i]
-        right = s[i+1:]
-        permute(left + right, answer + ch)
-permute("ABC")
+        char = s[i]
+        remaining = s[:i] + s[i+1:]
+        for p in permutations(remaining):
+            result.append(char + p)
+    return result
+print(permutations("abc"))
 
 

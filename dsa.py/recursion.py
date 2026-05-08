@@ -30,6 +30,16 @@ def fact(n):
     return n*fact(n-1)
 print(fact(5))
 
+def rev_arr(s,left,right):
+    if left>=right:
+        return
+    s[left],s[right]=s[right],s[left]
+    return rev_arr(s,left+1,right-1)
+    
+s=[1,23,4]
+rev_arr(s,0,len(s)-1)
+print(s)
+
 def reverse_word(word): #O(n)
     if len(word) <= 1:
         return word
@@ -47,6 +57,24 @@ def rev(sentence):
 sentence="hello world"
 word=sentence.split()
 print(" ".join(rev(word)))
+
+def rev_alp(s):
+    if len(s)<=1:
+        return s
+    sor=sorted(s,reverse=True)    
+    def rec_rev(chars):
+        if not chars:
+            return ""
+        return chars[0]+rec_rev(chars[1:])   
+    return rec_rev(sor)
+s="python"    
+print(rev_alp(s))  
+
+def reverse_num(n, rev):
+    if n == 0:
+        return rev
+    return reverse_num(n // 10, rev * 10 + n % 10)
+print(reverse_num(1234, 0))
 
 def sum_arr(arr,N):
     if N==0:
@@ -93,6 +121,32 @@ def sum_digit(n):
 n="1234"
 print(sum_digit(n))
 
+def rem(n):
+    if n==0:
+        return
+    print(n)
+    rem(n//10)
+rem(1234) 
+
+def remove(stack,n):
+    if n==1:
+        stack.pop()
+        return 
+    top=stack.pop()
+    remove(stack,n-1)
+    stack.append(top)
+stack=[1,2,3,4,5]    
+n=4
+remove(stack,n)
+print(stack)
+        
+def rem(n):
+    if not n:
+        return  ""
+    print(n)
+    return rem(n[1:])
+rem("1234")    
+
 def rem_dup(arr,seen=None):
     if seen is None:
        seen=set()
@@ -106,6 +160,8 @@ def rem_dup(arr,seen=None):
         return [first]+rem_dup(arr[1:],seen)
 arr=[12,2,3,2,12,5]
 print(rem_dup(arr))
+
+
         
 
     

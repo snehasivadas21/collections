@@ -148,6 +148,10 @@ s=max(d,key=lambda k:len(d[k]))
 del d[s]
 print(d)
 
+c=sorted(d.items(),key=lambda k:len(k[1]),reverse=True)
+del d[c[1][0]]
+print(d)
+
 k=sorted(d.items(),key=lambda x:len(x[1]))
 lk,lv=k[-1]
 del d[lk]
@@ -166,6 +170,26 @@ for i in s:
     else:
         result+=i
 print(result)  
+
+def rep(a):
+    d={}
+    out=[]
+    for i in a:
+        if i not in d:
+            d[i]=1
+        else:
+            d[i]+=1
+            
+        if d[i]==2:
+            out.append(i)
+            
+            if len(out)==2:
+                target=out[1]
+                return a.replace(target,target.upper())
+    return a        
+        
+a="programming"
+print(rep(a))
 
 text = "Beautiful morning in the valley"
 vowels="aeiouAeiou"

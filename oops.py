@@ -226,6 +226,7 @@ square=lambda x:(math.sqrt(x))**2
 print(square(5))
 
 from datetime import datetime,timedelta,date
+import calendar
 
 print((datetime.now()-timedelta(days=5)).strftime('%Y-%m-%d'))
 
@@ -247,6 +248,12 @@ print(datetime.today().strftime("%A"))
 today=date.today()
 new_year=date(today.year+1,1,1)
 print((new_year-today).days)
+
+month = datetime.now().month
+year = datetime.now().year
+
+days = calendar.monthrange(year, month)[1]
+print(days == 31)
  
 # def count(n):
 #     for i in range(1,n+1):
@@ -429,6 +436,12 @@ add(5,6)
 #     print(f.read())  
 # os.remove("text.txt")  
 
+files = ["a.txt", "b.txt"]
+import os
+for f in files:
+    if os.path.exists(f) and os.path.getsize(f) == 0:
+        os.remove(f)
+
 class A:
     def hello(self):
         print("A")
@@ -455,32 +468,6 @@ v1=Vector(2,3)
 v2=Vector(4,1)
 print(v1+v2)
 print(v1*3)
-class Queue:
-    def __init__(self):
-        self.items=[]
-    def enqueue(self,item):
-        self.items.append(item)
-        print(f"{item}")
-    def dequeue(self):
-        if self.is_empty():
-            print("empty")
-            return None
-        removed=self.items.pop(0)
-        return removed
-    def is_empty(self):
-        return len(self.items)==0
-    def display(self):
-        print(self.items)
-
-q=Queue()
-q.enqueue(10)
-q.enqueue(20)
-q.enqueue(30)
-q.display()
-q.dequeue()
-q.display()
-q.dequeue()
-
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -495,3 +482,26 @@ class Point:
 p = Point(3, 4)
 print(p)        
 print(repr(p))  
+
+class InvalidAgeError(Exception):
+    pass
+
+def check_age(age):
+    if age < 18:
+        raise InvalidAgeError("Age must be 18+")
+
+check_age(15)
+
+class Count:
+    def __init__(self,start):
+        self.start=start
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.start<=0:
+            raise StopIteration
+        val=self.start
+        self.start -= 1
+        return val
+for i in Count(5):
+    print(i)

@@ -34,6 +34,10 @@ n=3
 result=[a[i:i+n] for i in range(0,len(a),n)]
 print(result)
 
+a=[1,2,3,4,5,6]
+del a[1::2]
+print(a)
+
 l1 = [1, 2, 2, 3, 4]
 l2 = [3, 4, 4, 5, 6]
 print(list(set(l1) & (set(l2))))
@@ -85,20 +89,15 @@ numbers = [2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15]
 p=list(filter(lambda x:prime(x),numbers))
 print(p)
 
-def is_prime(n):
-    if n<2:
-        return False
-    for i in range(2,int(n**0.5)+1):
-        if n%i==0:
-            return False
-    return True
-prime=[]
-num=2
-while len(prime)<100:
-    if is_prime(num):
-        prime.append(num)
-    num+=1
-print(prime)    
+def remove_dup(s):
+    j=0
+    for i in range(1,len(s)):
+        if s[i]!=s[j]:
+            j+=1
+            s[j]=s[i]
+    return s[:j+1]        
+s=[1,2,3,3,4,4,5,6]
+print(remove_dup(s))  
 
 nums=[1,2,3,4,4,2,5]
 duplicates = [x for x in set(nums) if nums.count(x)>1]
@@ -124,22 +123,49 @@ s=[matrix[i][len(matrix)-1-i] for i in range(len(matrix))]
 print(s)
 
 def merge(a,b):
-    i=len(a)-1
-    j=0
-    while i>=0 and j<len(b):
+    out=[]
+    i=0
+    j=len(b)-1
+    while i<len(a) and j>=0:
         if a[i]<b[j]:
-            i-=1
+            out.append(a[i])
+            i+=1
         else:
-            a[i],b[j]=b[j],a[i]
-            i-=1
+            out.append(b[j])
+            j-=1
+    while i<len(a):
+        out.append(a[i])
+        i+=1
+    while j>=0:
+        out.append(b[j])
+        j-=1
+    return out        
+
+a=[10,20,30,40]
+b=[45,25,5]
+print(merge(a,b))    
+
+def merge(arr1,arr2):
+    out=[]
+    i=0
+    j=0
+    while i<len(arr1) and j<len(arr2):
+        if arr1[i]<arr2[j]:
+            out.append(arr1[i])
+            i+=1
+        else:
+            out.append(arr2[j])
             j+=1
-    a.sort()
-    b.sort()
-a=[1, 4, 7, 8, 10]
-b=[2, 3, 9]
-merge(a,b)
-print(a)
-print(b)
+    while i<len(arr1):
+        out.append(arr1[i])
+        i+=1
+    while j<len(arr2):
+        out.append(arr2[j])
+        j+=1
+    return out    
+arr1 = [1, 3, 5, 7]
+arr2 = [2, 4, 6, 8, 10]
+print(merge(arr1,arr2))
 
 a=[100, 4, 200, 1, 3, 2]
 num_set=set(a)
@@ -308,6 +334,15 @@ nums =[10,20,30,40,50,60]
 mid = (len(nums)-1)//2
 nums.pop(mid)
 print(nums)
+
+def rotate(arr,k):
+    if not arr:
+        return arr
+    k=k%len(arr)
+    return arr[-k:]+arr[:-k]
+arr=[10,20,30,40] 
+k=2
+print(rotate(arr,k))    
 
 # def move_zeros_to_end(nums):
 #     j = 0  
