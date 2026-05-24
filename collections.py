@@ -1,5 +1,6 @@
 # def rev(s):
-#     return s[::-1]    
+#     return s[::-1]   
+#     return s==s[::-1] 
 #     return s.upper()
 #     return s[0].upper()+s[1:-1]+s[-1].upper()
 #     return s.replace('a','w')
@@ -30,6 +31,7 @@ print("".join(result))
         
 # str1="sky is blue"
 # print(" ".join(str1.split()[::-1]))
+# print(" ".join(i[::-1] for i in str1.split()))
 
 def rev(sl):
     s=sl.split()
@@ -51,6 +53,19 @@ def rev(s):
     return " ".join(output)    
 s="hello world"
 print(rev(s))
+
+def merge_rev(r):
+    if len(r)<=1:
+        return r
+    mid=len(r)//2
+    left=merge_rev(r[:mid])
+    right=merge_rev(r[mid:])
+    return right+left
+
+r="hello"
+l_r=list(r)
+print("".join(merge_rev(l_r)))
+        
 
 def rev_vowel(s):
     vowels="aeiou"
@@ -194,6 +209,23 @@ for i in range(len(a)-1):
         ml=l
         r=a[i]
 print(r*ml) 
+
+def lar_sub(s):
+    vowels="aeiou"
+    max_sub=""
+    curr=""
+    for i in s:
+        if i not in vowels:
+            curr+=i
+        else:
+            if len(curr)>len(max_sub):
+                max_sub=curr
+            curr=""
+    if len(curr)>len(max_sub):
+        max_sub=curr
+    return max_sub
+s="strength"
+print(lar_sub(s))
 
 def permutations(s):
     if len(s) <= 1:

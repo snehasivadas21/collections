@@ -1,13 +1,13 @@
 def bineary_search(arr,high,low,x): #Olog(n) - O(1)
-    if high > low:
-        mid=(high+low)//2
-        if arr[mid] == x:
-            return mid
-        elif arr[mid] > x:
-            return bineary_search(arr,mid-1,low,x)
-        else:
-            return bineary_search(arr,high,mid+1,x)
-    return -1
+    if low > high:
+        return -1
+    mid=(high+low)//2
+    if arr[mid] == x:
+        return mid
+    elif arr[mid] > x:
+        return bineary_search(arr,mid-1,low,x)
+    else:
+        return bineary_search(arr,high,mid+1,x)
 arr=[1,2,3,4]
 x=4
 result=bineary_search(arr,len(arr)-1,0,x)
@@ -30,6 +30,13 @@ def fact(n):
     return n*fact(n-1)
 print(fact(5))
 
+def recurse(n):
+    if n == 5:
+        return
+    print(n)
+    recurse(n + 1)
+recurse(0)
+
 def rev_arr(s,left,right):
     if left>=right:
         return
@@ -39,6 +46,16 @@ def rev_arr(s,left,right):
 s=[1,23,4]
 rev_arr(s,0,len(s)-1)
 print(s)
+
+def rev(s):
+    if not s:
+        return
+    rev(s[1:])
+    print(s[0])
+
+s="hello world"
+s=s.split()
+rev(s)
 
 def reverse_word(word): #O(n)
     if len(word) <= 1:
@@ -70,7 +87,7 @@ def rev_alp(s):
 s="python"    
 print(rev_alp(s))  
 
-def reverse_num(n, rev):
+def reverse_num(n, rev): # tail recursion
     if n == 0:
         return rev
     return reverse_num(n // 10, rev * 10 + n % 10)
@@ -94,7 +111,14 @@ def sum_even_recursion(arr):
         else:
             return sum_even_recursion(arr[1:])
 arr=[1,2,2,3,4,5]
-print(sum_even_recursion(arr))     
+print(sum_even_recursion(arr))  
+
+def sum_digit(n):
+    if int(n)==0:
+        return 0
+    return (int(n)%10)+sum_digit(int(n)//10)
+n="1234"
+print(sum_digit(n))
 
 def remove_char(string,c):
     if not string:
@@ -105,22 +129,6 @@ def remove_char(string,c):
         return string[0]+remove_char(string[1:],c)
 print(remove_char("balance","l"))
 
-def rotate(l,n):
-    if n==0:
-        return l
-    else:
-        return rotate(l[-1:]+l[:-1],n-1)
-l=[1,2,3,4,5]
-n=2
-print(rotate(l,n))
-
-def sum_digit(n):
-    if int(n)==0:
-        return 0
-    return (int(n)%10)+sum_digit(int(n)//10)
-n="1234"
-print(sum_digit(n))
-
 def rem(n):
     if n==0:
         return
@@ -128,24 +136,12 @@ def rem(n):
     rem(n//10)
 rem(1234) 
 
-def remove(stack,n):
-    if n==1:
-        stack.pop()
-        return 
-    top=stack.pop()
-    remove(stack,n-1)
-    stack.append(top)
-stack=[1,2,3,4,5]    
-n=4
-remove(stack,n)
-print(stack)
-        
 def rem(n):
     if not n:
         return  ""
     print(n)
     return rem(n[1:])
-rem("1234")    
+rem("1234") 
 
 def rem_dup(arr,seen=None):
     if seen is None:
@@ -160,6 +156,15 @@ def rem_dup(arr,seen=None):
         return [first]+rem_dup(arr[1:],seen)
 arr=[12,2,3,2,12,5]
 print(rem_dup(arr))
+
+def rotate(l,n):
+    if n==0:
+        return l
+    else:
+        return rotate(l[-1:]+l[:-1],n-1)
+l=[1,2,3,4,5]
+n=2
+print(rotate(l,n))
 
 
         

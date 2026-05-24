@@ -8,6 +8,13 @@
 # b=[x for x in a if isinstance(x,str)]
 # print(b)
 
+a=[1,2,3,4]
+b=[2,3,8,9]
+print(list(set(a)&set(b)))
+print([i for i in a if i in b])
+print(a+b)
+print([*a,*b])
+
 l=[i**2 for i in range(1,6)]
 print(l)
 
@@ -49,6 +56,10 @@ y = 3
 a=lambda x,y:0.5*x*y
 a=a(x,y)
 print(a)
+
+a=[1,2,3,4,5]
+last=lambda x:x[-1]
+print(last(a))
 
 li=[1,2,3,4]
 output=list(map(lambda x:x**3,li))

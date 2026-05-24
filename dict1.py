@@ -65,6 +65,8 @@ for key in keys:
     del d[key]
 print(d) 
 
+print(max(d.items(),key=lambda x:x[1]))
+
 def filter_dict(dic,key):
     return [d for d in dic if key not in d]
 dic=[{"a":1,"b":2},{"c":3},{"a":4,"d":5}]

@@ -36,7 +36,23 @@ def reverse(s):
         a+=stack.pop()
     return a
 s="hello"
-print(reverse(s))  
+print(reverse(s)) 
+
+def rev(sen):
+    stack=[]
+    result=""
+    for i in sen:
+        if i!=" ":
+            stack.append(i)
+        else:
+            while stack:
+                result+=stack.pop()
+            result+=" "
+    while stack:
+        result+=stack.pop()
+    return result    
+sen="sky is blue"
+print(rev(sen))
 
 def palindrome(str):
     stack=[]
@@ -77,6 +93,19 @@ def remove_dup(stack):
 
 stack = [1, 2, 3, 2, 4, 1]
 print(remove_dup(stack))
+
+def rem_stack(stack,n,current=1):
+    if not stack:
+        return 
+    top=stack.pop()
+    if n==current:
+        return 
+    rem_stack(stack,n,current+1)   
+    stack.append(top)
+
+stack=[1,2,3,4,5]
+rem_stack(stack,3)
+print(stack)
 
 class Node:
     def __init__(self,data):
