@@ -28,18 +28,26 @@ class Trie:
         return True
     def delete(self,word):
         def _delete(node,word,depth):
+            #reached the end of the word
             if depth==len(word):
+                #word doesn't exist in trie
                 if not node.is_end:
                     return False
+                #unmark the end of the word
                 node.is_end=False
+                #if node has no children,it can deleted from its parent
                 return len(node.children)==0
+            #word doesn't exist if character path is missing
             char=word[depth]
             if char not in node.children:
-                return False
+                return False 
+            #recurse down to the next character
             child_node=node.children[char]
             delete_child=_delete(child_node,word,depth+1)
+            #remove the child reference from current node
             if delete_child:
                 del node.children[char]
+                #return true if current node is now empty and not another word's end
                 return len(node.children)==0 and not node.is_end
             return False
         _delete(self.root,word,0)

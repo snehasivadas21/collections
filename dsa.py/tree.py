@@ -1,3 +1,4 @@
+from collections import deque
 class TreeNode:
     def __init__(self,data):
         self.data=data
@@ -54,7 +55,19 @@ def inorder(root): #O(n)
     if root:
         inorder(root.left)
         print(root.data,end=" ")
-        inorder(root.right)    
+        inorder(root.right)   
+
+def level_order(root):
+    if not root:
+        return 
+    queue=deque([root])
+    while queue:
+        node=queue.popleft()
+        print(node.data,end=" ")
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
 
 r=TreeNode(50)
 insert(r,30)
@@ -65,6 +78,7 @@ print("True" if isBalanced(r) else "False")
 inorder(r)
 print(maximum(r))
 print(minimum(r))  
+level_order(r)
 
 class Node:
     def __init__(self,val):

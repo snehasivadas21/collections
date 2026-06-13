@@ -166,6 +166,15 @@ l=[1,2,3,4,5]
 n=2
 print(rotate(l,n))
 
+def lar_num(arr):
+    if len(arr)==1:
+        return arr[0]
+    largest=lar_num(arr[1:])
+    return arr[0] if arr[0]>largest else largest
+
+arr=[1,12,13,4]
+print(lar_num(arr))
+
 
         
 
