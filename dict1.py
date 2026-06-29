@@ -240,28 +240,6 @@ print(d)
 d=sorted(data,key=lambda x:sum(data[x]["marks"]),reverse=True)[:2]
 print(d)
 
-dept_salaries = {
-    "CSE": [50000, 60000, 70000],
-    "ECE": [45000, 55000, 65000],
-    "MECH": [40000, 42000, 43000]
-}
-
-max_avg=0
-high_dept=""
-for d,s in dept_salaries.items():
-    total=0
-    count=0
-    for i in s:
-        total+=i
-        count+=1
-    avg=total/count
-    if avg>max_avg:
-        max_avg=avg
-        high_dept=d
-del dept_salaries[high_dept]
-print(high_dept)
-print(dept_salaries)
-
 def first_last_key(d):
     if not d:
         return None
@@ -269,17 +247,6 @@ def first_last_key(d):
     return (keys[0],keys[-1])
 d={"name":"sneha","age":89,"place":"paris"}
 print(first_last_key(d)) 
-
-def all_key(d):
-    if not d:
-        return True
-    first_key=type(next(iter(d)))
-    for key in d:
-        if type(key) != first_key:
-            return False
-    return True
-dict1={"hello":12,"game":"bobjy",90:90}
-print(all_key(dict1))
 
 a={'a': 1, 'b': 2, 'c': 1, 'd': 3, 'e': 2}
 unique={}

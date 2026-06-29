@@ -98,9 +98,10 @@ def prime(n):
     return True
 numbers = [2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15]
 p=list(filter(lambda x:prime(x),numbers))
+# p=list(filter(lambda x:prime(x),range(1,10)))
 print(p)
 
-def remove_dup(s):
+def remove_dup_sorted(s):
     j=0
     for i in range(1,len(s)):
         if s[i]!=s[j]:
@@ -108,7 +109,15 @@ def remove_dup(s):
             s[j]=s[i]
     return s[:j+1]        
 s=[1,2,3,3,4,4,5,6]
-print(remove_dup(s))  
+print(remove_dup_sorted(s))  
+
+def remove_dup_unsorted(list1):
+    for i in range(len(list1)-1,-1,-1):
+        if list1.index(list1[i])!=i:
+            del list1[i]
+    return list1        
+list1 = [4, 5, 4, 1, 2, 1, 3]        
+print(remove_dup_unsorted(list1))        
 
 nums=[1,2,3,4,4,2,5]
 duplicates = [x for x in set(nums) if nums.count(x)>1]
@@ -123,15 +132,17 @@ for i in d:
         count[i]+=1
 print(max(count,key=count.get))            
 
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
-f=[matrix[i][i] for i in range(len(matrix))]
-print(f)
-s=[matrix[i][len(matrix)-1-i] for i in range(len(matrix))]
-print(s)
+def five(num):
+    if num==0:
+        return True
+    while num>0:
+        if num%10==5:
+            return False
+        num=num//10    
+    return True
+
+num=[23,25,55,77,254]
+print([i for i in num if five(i)])
 
 def merge(a,b):
     out=[]

@@ -231,19 +231,11 @@ import calendar
 print((datetime.now()-timedelta(days=5)).strftime('%Y-%m-%d'))
 
 now = datetime.now()
-d=lambda : datetime.now().strftime("%H:%m:%s")
-print(d)
 print("Current datetime:", now)
 print("Current time only:", now.strftime("%H:%M:%S"))
 print("Current date only:", now.strftime("%Y-%m-%d"))
 print(datetime.now().time())
 print(datetime.now().date())
-print(datetime.today().strftime("%Y"))
-print(datetime.today().strftime("%B"))
-print(datetime.today().strftime("%W"))
-print(datetime.today().strftime("%j"))
-print(datetime.today().strftime("%d"))
-print(datetime.today().strftime("%A"))
 
 today=date.today()
 new_year=date(today.year+1,1,1)
@@ -251,7 +243,6 @@ print((new_year-today).days)
 
 month = datetime.now().month
 year = datetime.now().year
-
 days = calendar.monthrange(year, month)[1]
 print(days == 31)
  
@@ -309,7 +300,18 @@ for _ in range(5):
 #         for line in file:
 #             yield line
 # for line in read_file("bigdata.txt"):
-#     print(line.strip())        
+#     print(line.strip())  
+
+import random
+
+def random_list(s):
+    shuffled_list=s.copy()
+    random.shuffle(shuffled_list)
+    for i in shuffled_list:
+        yield i
+s=["app","bus","car"]
+for i in random_list(s):
+    print(i)
 
 # a=[1,2,3]
 # b=iter(a)
@@ -341,6 +343,13 @@ for _ in range(5):
 # print(a)
 # print(deep)
 # print(shallow)
+
+import copy
+d={"name":"aa","skills":["python","Dsa"]}
+deep=copy.deepcopy(d)
+deep["skills"].append("Ai")
+print(d)
+print(deep)
     
 # class Person:
 #     sleeptime =8
@@ -436,11 +445,26 @@ add(5,6)
 #     print(f.read())  
 # os.remove("text.txt")  
 
+with open("first.txt","r") as first,open("second.txt","a") as second:
+    for line in first:
+        second.write(line)
+
 files = ["a.txt", "b.txt"]
 import os
 for f in files:
     if os.path.exists(f) and os.path.getsize(f) == 0:
         os.remove(f)
+
+# import os
+# def read_delete(path):
+#     for file in os.listdir(path):
+#         full_path=os.path.join(path,file)
+        
+#         if os.path.isfile(full_path):
+#             if os.path.getsize(full_path)==0:
+#                 os.remove(full_path)
+#                 print(f"Deleted:{file}")
+# print(read_delete("big.txt"))                
 
 class A:
     def hello(self):
@@ -483,14 +507,14 @@ p = Point(3, 4)
 print(p)        
 print(repr(p))  
 
-class InvalidAgeError(Exception):
-    pass
+# class InvalidAgeError(Exception):
+#     pass
 
-def check_age(age):
-    if age < 18:
-        raise InvalidAgeError("Age must be 18+")
+# def check_age(age):
+#     if age < 18:
+#         raise InvalidAgeError("Age must be 18+")
 
-check_age(15)
+# check_age(15)
 
 class Count:
     def __init__(self,start):

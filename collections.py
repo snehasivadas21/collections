@@ -113,6 +113,18 @@ def second_long(s):
 s="Python is powerful and easy to learn"
 print(second_long(s))
 
+def sort_by_freq(s):
+    d={}
+    for i in s:
+        if i not in d:
+            d[i]=1
+        else:
+            d[i]+=1
+    sorted_items=sorted(d.items(),key=lambda x:x[1],reverse=True)
+    return "".join(i*count for i,count in sorted_items)
+s="mississippi"    
+print(sort_by_freq(s))
+
 def upper_case(s,n):
     s=s.split()
     r=""
@@ -137,8 +149,8 @@ for i in set(s):
 print(res)
 
 s="hello"
-swapped=s[-1]+s[1:-1]+s[0] if len(s)>1 else s
-print(swapped)
+swap_ends = lambda s: s[-1] + s[1:-1] + s[0] if len(s) > 1 else s
+print(swap_ends(s))
 
 def rotate(s,k):
     n=len(s)
@@ -154,10 +166,18 @@ index=li.index(mi)
 li.pop(index)
 print(li) 
 
-my_list = ["short", "medium", "very"]
-max_len = max(len(s) for s in my_list)
-for item in my_list:
-    print(f"{item:>{max_len}}")
+def example(*args):
+    if not args or all(arg is None for arg in args):
+        raise ValueError("must not be None")
+    return "success"
+print(example("2",None))   
+
+def example(**kwargs):
+    if "err" in kwargs:
+        raise ValueError("problem")
+    print("success")
+example(data="test")    
+example(err="err")    
 
 def all_same(*args):
     if not args:
